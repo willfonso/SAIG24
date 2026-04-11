@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAIG24</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    font-family:'Inter',sans-serif;
+    overflow:hidden;
+    color:white;
+}
+
+/* ===== FONDO DINÁMICO ===== */
+body::before{
+    content:"";
+    position:absolute;
+    width:200%;
+    height:200%;
+    background:linear-gradient(
+        120deg,
+        #74ACDF,
+        #FFFFFF,
+        #FCD116,
+        #0038A8,
+        #EF3340
+    );
+    animation:moveGradient 12s linear infinite;
+    z-index:-3;
+}
+
+@keyframes moveGradient{
+    0%{transform:translate(0,0);}
+    50%{transform:translate(-25%,-25%);}
+    100%{transform:translate(0,0);}
+}
+
+/* ===== GLASS ===== */
+.overlay{
+    position:absolute;
+    width:100%;
+    height:100%;
+    backdrop-filter:blur(20px);
+    background:rgba(0,0,0,0.35);
+    z-index:-2;
+}
+
+/* ===== MATRIX ===== */
+#matrix{
+    position:absolute;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+
+/* ===== CONTENEDOR ===== */
+.container{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    animation:fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(30px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+/* ===== LOGO ===== */
+.logo{
+    width:560px;
+    margin-bottom:20px;
+    animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+}
+
+/* ===== TEXTOS ===== */
+h1{
+    font-family:'Orbitron';
+    font-size:2.8rem;
+    margin-bottom:10px;
+    animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{text-shadow:0 0 10px rgba(255,255,255,0.2);}
+    to{text-shadow:0 0 25px rgba(255,255,255,0.9);}
+}
+
+.subtitle{
+    max-width:600px;
+    opacity:0.9;
+    margin-bottom:30px;
+}
+
+/* ===== COUNTDOWN ===== */
+.countdown{
+    display:flex;
+    gap:20px;
+}
+
+.box{
+    padding:20px;
+    border-radius:12px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+.number{
+    font-size:2.2rem;
+    font-weight:bold;
+}
+
+.label{
+    font-size:0.8rem;
+    opacity:0.7;
+}
+
+/* ===== BOTÓN ===== */
+.btn{
+    margin-top:30px;
+    padding:12px 30px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(90deg,#00ffcc,#00aaff);
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 20px rgba(0,255,204,0.6);
+}
+
+/* ===== FOOTER ===== */
+.footer{
+    position:absolute;
+    bottom:15px;
+    font-size:0.8rem;
+    opacity:0.6;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+<canvas id="matrix"></canvas>
+
+<div class="container">
+
+    <img src="logo.png" class="logo">
+
+    <h1>SAIG24 evoluciona</h1>
+
+    <p class="subtitle">
+        Los datos siempre estuvieron ahí.<br><br>
+        Lo que viene… no es acceso.<br>
+        Es control.
+    </p>
+
+    <!-- COUNTDOWN -->
+    <div class="countdown">
+        <div class="box">
+            <div id="days" class="number"></div>
+            <div class="label">Días</div>
+        </div>
+        <div class="box">
+            <div id="hours" class="number"></div>
+            <div class="label">Horas</div>
+        </div>
+        <div class="box">
+            <div id="minutes" class="number"></div>
+            <div class="label">Min</div>
+        </div>
+        <div class="box">
+            <div id="seconds" class="number"></div>
+            <div class="label">Seg</div>
+        </div>
+    </div>
+
+    <!-- BOTÓN -->
+    <button class="btn" onclick="goToApp()">
+        Acceder al sistema
+    </button>
+
+</div>
+
+<div class="footer">
+SAIG24.cloud · Sistema Administrativo Integral
+</div>
+
+<script>
+
+/* ===== REDIRECCIÓN ===== */
+function goToApp(){
+    window.location.href = "https://oficina.saig24.cloud";
+}
+
+/* ===== COUNTDOWN ===== */
+const target = new Date("June 1, 2026 00:00:00").getTime();
+
+setInterval(()=>{
+    const now = new Date().getTime();
+    const diff = target - now;
+
+    document.getElementById("days").innerText = Math.floor(diff/(1000*60*60*24));
+    document.getElementById("hours").innerText = Math.floor((diff/(1000*60*60))%24);
+    document.getElementById("minutes").innerText = Math.floor((diff/(1000*60))%60);
+    document.getElementById("seconds").innerText = Math.floor((diff/1000)%60);
+},1000);
+
+/* ===== MATRIX ===== */
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const letters = "SELECT SAIG24 FROM SYSTEM;";
+const fontSize = 14;
+const columns = canvas.width/fontSize;
+
+const drops = [];
+for(let x=0;x<columns;x++) drops[x]=1;
+
+function draw(){
+    ctx.fillStyle="rgba(0,0,0,0.05)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle="#00ffcc";
+    ctx.font=fontSize+"px monospace";
+
+    for(let i=0;i<drops.length;i++){
+        const text = letters[Math.floor(Math.random()*letters.length)];
+        ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+        if(drops[i]*fontSize>canvas.height && Math.random()>0.975)
+            drops[i]=0;
+
+        drops[i]++;
+    }
+}
+
+setInterval(draw,33);
+
+</script>
+
+</body>
+</html>
