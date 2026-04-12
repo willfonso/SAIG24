@@ -18,9 +18,9 @@ body{
 }
 
 /* ===== FONDO DINÁMICO ===== */
-body::before{
+/*"""body::before{
     content:"";
-    position:absolute;
+    position:fixed;
     width:200%;
     height:200%;
     background:linear-gradient(
@@ -33,7 +33,7 @@ body::before{
     );
     animation:moveGradient 12s linear infinite;
     z-index:-3;
-}
+}""" */
 
 @keyframes moveGradient{
     0%{transform:translate(0,0);}
@@ -215,7 +215,7 @@ function goToApp(){
 }
 
 /* ===== COUNTDOWN ===== */
-const target = new Date("June 1, 2026 00:00:00").getTime();
+const target = new Date("June 1, 2026 09:00:00").getTime();
 
 setInterval(()=>{
     const now = new Date().getTime();
