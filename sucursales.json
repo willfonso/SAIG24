@@ -1,0 +1,1107 @@
+const sucursalesData = [
+    {
+        "id": "alberdi-3301",
+        "name": "Alberdi 3301",
+        "address": "Av. Juan Bautista Alberdi 3301",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/BJWBkq3rNJCVgRSJ9",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": "24h"
+        }
+    },
+    {
+        "id": "alberdi-4351",
+        "name": "Alberdi 4351",
+        "address": "Av. Juan Bautista Alberdi 4351",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/EPFsJMHooQuRHCAT6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": "24h"
+        }
+    },
+    {
+        "id": "magarinoscervantes-1602",
+        "name": "Alejandro Magariños Cervantes 1602",
+        "address": "Alejandro Magariños Cervantes 1602",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/CnCr44tBTQzyzNVN6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": "24h"
+        }
+    },
+    {
+        "id": "jonte-3301",
+        "name": "Alvarez Jonte 3301",
+        "address": "Álvarez Jonte 3301",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/MExcFMopoaF8Tx4M7",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "jonte-5187",
+        "name": "Alvarez Jonte 5187",
+        "address": "Álvarez Jonte 5187",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/FiLtUrfsHeW5GUi47",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "alvarezthomas-2602",
+        "name": "Alvarez Thomas 2602",
+        "address": "Av. Álvarez Thomas 2602",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/qciNiH7UQ2cUzV326",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "alvarezthomas-801",
+        "name": "Alvarez Thomas 801",
+        "address": "Av. Álvarez Thomas 801",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/bpN1hFETsAXs3b38A",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "armenia-1385",
+        "name": "Armenia 1395",
+        "address": "Armenia 1395",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/mS7Vt1HvzRZYJPUT8",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "armenia-1499",
+        "name": "Armenia1499",
+        "address": "Armenia 1499",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/yyDkwMSCnyLnCxrt7",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "artigas-1702",
+        "name": "Artigas 1702",
+        "address": "Gral. José Gervasio Artigas 1702",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/KqiW6eWFnKUshXQr6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "artigas-2201",
+        "name": "Artigas 2201",
+        "address": "Gral. José Gervasio Artigas 2201",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/VXNpNE7wekde3kRH9",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "artigas-4902",
+        "name": "Artigas 4902",
+        "address": "Gral. José Gervasio Artigas 4902",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/74qVL8mmNoYdKAs69",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "artigas-5399",
+        "name": "Artigas 5399",
+        "address": "Gral. José Gervasio Artigas 5399",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/UqM3iEavXTDgjkXw5",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "asamblea-2300",
+        "name": "Asamblea 2300",
+        "address": "Av. Asamblea 2300",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/VHwsjxcvCyRAsw3K8",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "avellaneda-2020",
+        "name": "Avellaneda 2020",
+        "address": "Av. Avellaneda 2020",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/BDVP1FCpVMRrYmZFA",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "bahiablanca-1602",
+        "name": "Bahia Blanca 1602",
+        "address": "Bahía Blanca 1602",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/JxNkNT4hPpPGU8km6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "beiro-3501",
+        "name": "Beiro 3501",
+        "address": "Av. Francisco Beiro 3501",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/Yv6zzzqiNKH4m99H9",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "beiro-3801",
+        "name": "Beiro 3801",
+        "address": "Av. Francisco Beiro 3801",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/G7vcBLxBcD223v4X6",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "beiro-4902",
+        "name": "Beiro 4932",
+        "address": "Av. Francisco Beiró 4932",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/pkCJ4muy5LULUfqi6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "benitojuarez-2703",
+        "name": "Benito Juarez 2703",
+        "address": "Benito Juárez 2703",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/H3u9s562EzP2Zrpj7",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "bogota-3793",
+        "name": "Bogotá 3793",
+        "address": "Bogotá 3793",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/UZP4FVmPmGJpw3Li6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "cabrera 4200",
+        "name": "Cabrera 4200",
+        "address": "José A. Cabrera 4200",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/dbQV5MZP5M1RJdhL7",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "camarones-3099",
+        "name": "Camarones 3099",
+        "address": "Camarones 3099",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/JqxqXQD1CWEHiDCn9",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "camarones-3600",
+        "name": "Camarones 3600",
+        "address": "Camarones 3600",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/CFBYUiSzgLVZXebW8",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "campana-2799",
+        "name": "Campana 2799",
+        "address": "Campana 2799",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/ZNUMbQdhQuWbEngE6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "constituyentes-3800",
+        "name": "Constituyentes 3800",
+        "address": "Av. de los Constituyentes 3800",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/buVNNvMEQoEJ52ty6",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "constituyentes-5601",
+        "name": "Constituyentes 5601",
+        "address": "Av. de los Constituyentes 5601",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/VUx5KgmKJu5UAqb76",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "coroneldiaz-1791",
+        "name": "Coronel Diaz 1791",
+        "address": "Av. Cnel. Díaz 1791",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/mnw2KfHHmU7DhcLM7",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "cramer-2391",
+        "name": "Cramer 2391",
+        "address": "Av. Crámer 2391",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/XouzUKv5kipjFyCT6",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "cuenca-1096",
+        "name": "Cuenca 1096",
+        "address": "Cuenca 1096",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/haxq5pKFdYKhbTfi8",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "cuenca-1602",
+        "name": "Cuenca 1602",
+        "address": "Cuenca 1602",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/GMu1cYfVN43zPXKZ9",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "cuenca-2599",
+        "name": "Cuenca 2599",
+        "address": "Cuenca 2599",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/AmD9MxmCUCdUTi5a9",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "incas-4294",
+        "name": "De los Incas 4294",
+        "address": "Av. de los Incas 4294",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/3VEQrGpFHCZNFA1XA",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "incas-4483",
+        "name": "De los Incas 4483",
+        "address": "Av. de los Incas 4483",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/Dv2EHiCGdtmoPE818",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "incas-4598",
+        "name": "De los Incas 4598",
+        "address": "Av. de los Incas 4598",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/VLrgmUAPzjTgktNWA",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "diazvelez-4764",
+        "name": "Diaz Velez 4764",
+        "address": "Av. Díaz Vélez 4764",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/tbVr87m3Cc4VNohU9",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "directorio-1201",
+        "name": "Directorio 1201",
+        "address": "Av. Directorio 1201",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/j9e9rRGFV3E3AJub7",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "directorio-2901",
+        "name": "Directorio 2901",
+        "address": "Av. Directorio 2901",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/GcAWfMeX3PYNQsGu5",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "directorio-3200",
+        "name": "Directorio 3200",
+        "address": "Av. Directorio 3200",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/5FR65b8Mwc6JQwvF8",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "directorio-5497",
+        "name": "Directorio 5497",
+        "address": "Av. Directorio 5497",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/rCpirghxxeSQC8qY6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "gaona-3852",
+        "name": "Gaona 3852",
+        "address": "Av. Gaona 3852",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/tmj1q21jXNYmwsyQA",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "gaona-4000",
+        "name": "Gaona 4000",
+        "address": "Av. Gaona 4000",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/4xJs1iVxL5pVZyeb9",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "gaona-4398",
+        "name": "Gaona 4398",
+        "address": "Av. Gaona 4398",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/nkAZQKHVNKwB4cRr6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "godoycruz-2587",
+        "name": "Godoy Cruz 2587",
+        "address": "Godoy Cruz 2587",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/uqsofUFpHaAg3Km69",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "gorriti-5300",
+        "name": "Gorriti 5300",
+        "address": "Gorriti 5300",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/RHtKU49ndRCyFBQu9",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "honoriopuyrredon-1400",
+        "name": "Honorio Pueyrredon 1400",
+        "address": "Av. Dr. Honorio Pueyrredón 1400",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/QoBKmxpi75axbAKT6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "chenaut-1812",
+        "name": "Indalecio Chenaut 1812",
+        "address": "Av. Gral. Indalecio Chenaut 1802",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/FizL6cUby7Jsb92U6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "juanagustingarcia-2801",
+        "name": "Juan A Garcia 2801",
+        "address": "Juan Agustín García 2801",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/dJsmqZiN92UY88KQ8",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "juanbjusto-6801",
+        "name": "Juan B Justo 6801",
+        "address": "Av. Juan Bautista Justo 6801",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/jN7SxeBxCdo6uMjz8",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "lopedevega-2695",
+        "name": "Lope de Vega 2695",
+        "address": "Av. Lope de Vega 2695",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/euiw61s8eaBb9jK29",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "lopedevega-3502",
+        "name": "Lope de Vega 3502",
+        "address": "Av. Lope de Vega 3502",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/iusHdPyTANnkt9Qt7",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "luisviale-302",
+        "name": "Luis Viale 302",
+        "address": "Luis Viale 302",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/zTabVZzRU9rB4RHg6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "moliere-2099",
+        "name": "Moliere 2099",
+        "address": "Moliere 2099",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/BHq1vH2MfsE7Zp188",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "monroe-3393",
+        "name": "Monroe 3393",
+        "address": "Monroe 3393",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/vqpRarEPWdvjKEvk6",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "monroe-4299",
+        "name": "Monroe 4299",
+        "address": "Monroe 4299",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/TcdXy1rVRjc2aXiR6",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "monroe-4596",
+        "name": "Monroe 4596",
+        "address": "Monroe 4596",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/AFAzqnQCBHEFqf3T6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "mosconi-2299",
+        "name": "Mosconi 2299",
+        "address": "Av. Gral. Mosconi 2299",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/iABSLRa7StqR9NMR6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "mosconi-3437",
+        "name": "Mosconi 3437",
+        "address": "Av. Gral. Mosconi 3437",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/rX15qHaRM5ovpthZ8",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "mosconi-3700",
+        "name": "Mosconi 3700",
+        "address": "Av. Gral. Mosconi 3700",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/99kNWtRUj9L3n6gb9",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "nahuelhuapi-5898",
+        "name": "Nahuel Huapi 5898",
+        "address": "Nahuel Huapi 5898",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/TX8yPAmQBu11zrD46",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "nazca-1808",
+        "name": "Nazca 1808",
+        "address": "Av. Nazca 1808",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/7EYfBypxUpUyr7X58",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "nazca-2100",
+        "name": "Nazca 2100",
+        "address": "Av. Nazca 2100",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/KEz1m7ZmyxhwwCU49",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "nazca-2399",
+        "name": "Nazca 2300",
+        "address": "Av. Nazca 2399",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/CgNjXTRNsjrxtF9k7",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "nazca-2496",
+        "name": "Nazca 2496",
+        "address": "Av. Nazca 2496",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/EQwSxUcTmDxXhL5W9",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "nazca-799",
+        "name": "Nazca 799",
+        "address": "Av. Nazca 799",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/pSGuitqsLbnJBuyS6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "neuquen-1000",
+        "name": "Neuquen 1000",
+        "address": "Neuquén 1000",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/nhxZUp6yZc7PZYFQ6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "neuquen-1698",
+        "name": "Neuquen 1698",
+        "address": "Neuquén 1698",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/NtWFV3pnfxirHkbM8",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "neuquen-508",
+        "name": "Neuquen 508",
+        "address": "Neuquén 508",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/5ZJiz35iXBp6xJvH9",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "nuevayork-3505",
+        "name": "Nueva York 3505",
+        "address": "Nueva York 3505",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/QxhFLaQFEWNfnYUa8",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "olazabal-3999",
+        "name": "Olazabal 3999",
+        "address": "Av. Olazábal 3999",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/LdHLTFAUiXkM5J28A",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "olazabal-4202",
+        "name": "Olazabal 4202",
+        "address": "Av. Olazábal 4202",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/UnCfm9XJMWoynbZX7",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "riodejaniero-398",
+        "name": "Rio de Janeiro 398",
+        "address": "Río de Janeiro 398",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/webtrbDkqX95ujSx5",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "rojas-598",
+        "name": "Rojas 598",
+        "address": "Rojas 598",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/hNMF2PfzMAgEwGqj9",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "carril-2706",
+        "name": "Salvador Maria del Carril 2706",
+        "address": "Avenida Salvador María del Carril 2706",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/HGc6STfQS2EhNBa69",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "sanmartin-3103",
+        "name": "San Martín 3103",
+        "address": "Av. S. Martín 3101",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/EdysyPi3syGzFonS7",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "sanmartin-6994",
+        "name": "San Martín 6994",
+        "address": "Av. S. Martín 6994",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/LGareeidY6KQxu3q6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "sanabria-1608",
+        "name": "Sanabria 1608",
+        "address": "Sanabria 1608",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/4eNNXgWWFLLZQzsY8",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "sanabria-2500",
+        "name": "Sanabria 2500",
+        "address": "Sanabria 2500",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/EuB1AdiMubJYF3Rc6",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "sanabria-2796",
+        "name": "Sanabria 2796",
+        "address": "Sanabria 2796",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/imKiA3EUbL5XKRDP8",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "sanabria-3599",
+        "name": "Sanabria 3599",
+        "address": "Sanabria 3599",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/zTaZjs5DUtcufM7P7",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "segurola-1090",
+        "name": "Segurola 1090",
+        "address": "Segurola 1090",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/AcNtLyiWw2VmdmdS9",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    },
+    {
+        "id": "segurola-1696",
+        "name": "Segurola 1696",
+        "address": "Segurola 1696",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/rzhW1nQ3T3CdNXXy5",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "soler-3300",
+        "name": "Soler 3300",
+        "address": "Soler 3300",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/uu2Tfakh4PwDVD3H6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "superi-1402",
+        "name": "Superí 1402",
+        "address": "Superí 1402",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/sZLnvtuFej3o1qzV6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "tinogasta-3699",
+        "name": "Tinogasta 3699",
+        "address": "Tinogasta 3699",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/vvZnGVFTwQHzuFkX8",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
+        }
+    }
+]

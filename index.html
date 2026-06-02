@@ -9,6 +9,9 @@
     <!-- Google Fonts: Orbitron for tech titles and Inter for clean business data -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Carga de las 100 sucursales para autocompletar -->
+    <script src="sucursales.json"></script>
+
     <style>
         /* ===== MODERN DESIGN SYSTEM VARIABLES ===== */
         :root {
@@ -264,8 +267,8 @@
 
 
 
-        /* ===== MAIN DASHBOARD CONTAINER ===== */
-        .dashboard-viewport {
+        /* ===== SURVEY CARD DESIGN ===== */
+        .survey-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 24px;
@@ -274,48 +277,30 @@
             flex-direction: column;
             backdrop-filter: blur(16px);
             box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
-            min-height: 780px;
-            flex-grow: 1;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
             transition: var(--transition-smooth);
+            position: relative;
         }
 
-        .dashboard-bar {
+        .survey-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 28px;
+            padding-bottom: 20px;
             border-bottom: 1px solid var(--card-border);
-            background: rgba(255, 255, 255, 0.01);
+            margin-bottom: 30px;
         }
 
-        .bar-title {
+        .survey-header-title {
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .pulse-indicator {
-            width: 10px;
-            height: 10px;
-            background: var(--accent-cyan);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent-cyan);
-            animation: pulseCyan 1.5s infinite;
-        }
-
-        @keyframes pulseCyan {
-            0% {
-                box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(0, 242, 254, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(0, 242, 254, 0);
-            }
-        }
-
-        .bar-title h2 {
+        .survey-header h2 {
             font-family: var(--font-title);
             font-size: 0.95rem;
             font-weight: 700;
@@ -326,20 +311,15 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .bar-controls {
-            display: flex;
-            gap: 14px;
-        }
-
-        .ctrl-btn {
-            display: inline-flex;
+        .config-btn {
+            display: none;
             align-items: center;
             gap: 8px;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.07);
-            color: var(--text-primary);
-            padding: 10px 20px;
-            border-radius: 10px;
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 20px;
             font-family: var(--font-body);
             font-size: 0.8rem;
             font-weight: 600;
@@ -347,129 +327,790 @@
             transition: var(--transition-smooth);
         }
 
-        .ctrl-btn:hover {
+        .config-btn:hover {
             background: rgba(0, 242, 254, 0.08);
             border-color: rgba(0, 242, 254, 0.35);
             color: var(--accent-cyan);
-            transform: translateY(-1px);
+            box-shadow: var(--glow-cyan);
         }
 
-        .ctrl-btn svg {
-            transition: transform 0.3s ease;
+        .config-btn svg {
+            transition: transform 0.4s ease;
         }
 
-        .ctrl-btn:hover svg {
-            transform: scale(1.1);
+        .config-btn:hover svg {
+            transform: rotate(45deg);
         }
 
-        /* ===== IFRAME VIEWER FRAME ===== */
-        .iframe-wrapper {
-            position: relative;
-            flex-grow: 1;
-            width: 100%;
-            height: 700px;
-            background: rgba(7, 9, 19, 0.55);
+        /* ===== FORM GROUPS & LABELS ===== */
+        .survey-form {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
         }
 
-        #looker-iframe {
-            width: 100%;
-            height: 100%;
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            animation: fadeInUp 0.5s ease both;
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.05s; }
+        .form-group:nth-child(2) { animation-delay: 0.1s; }
+        .form-group:nth-child(3) { animation-delay: 0.15s; }
+        .form-group:nth-child(4) { animation-delay: 0.2s; }
+        .form-group:nth-child(5) { animation-delay: 0.25s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== STAR RATINGS ===== */
+        .rating-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .rating-star {
+            background: none;
             border: none;
-            opacity: 0;
-            transition: opacity 0.6s ease;
+            font-size: 2.2rem;
+            color: rgba(255, 255, 255, 0.15);
+            cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.2s ease, text-shadow 0.2s ease;
+            line-height: 1;
         }
 
-        /* ===== SKELETON PRELOADER ===== */
-        .loader-container {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .rating-star:hover {
+            transform: scale(1.25);
+        }
+
+        .rating-star.selected {
+            color: #ffd700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+        }
+
+        .rating-star.hovered {
+            color: #ffea70;
+        }
+
+        .rating-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-top: -2px;
+            min-height: 16px;
+        }
+
+        /* ===== CHIP SELECTORS ===== */
+        .chip-container {
+            display: flex;
+            gap: 15px;
+        }
+
+        .chip-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            padding: 14px 20px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .chip-btn:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+            color: var(--text-primary);
+        }
+
+        .chip-btn.selected[data-value="Sí"] {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
+        }
+
+        .chip-btn.selected[data-value="No"] {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: #ef4444;
+            color: #ef4444;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.15);
+        }
+
+        .chip-icon {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        /* ===== NPS GRID ===== */
+        .nps-scale-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .nps-container {
             width: 100%;
-            height: 100%;
+        }
+
+        .nps-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 6px;
+            width: 100%;
+        }
+
+        .nps-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            flex: 1;
+            aspect-ratio: 1;
+            min-width: 32px;
+            max-width: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .nps-btn:hover {
+            background: rgba(0, 242, 254, 0.06);
+            border-color: rgba(0, 242, 254, 0.3);
+            color: var(--accent-cyan);
+            transform: translateY(-2px);
+        }
+
+        .nps-btn.selected {
+            background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-blue) 100%);
+            border-color: transparent;
+            color: var(--bg-dark);
+            box-shadow: var(--glow-cyan);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        /* Color classes for different NPS zones on hover */
+        .nps-btn:hover:nth-child(-n+7) {
+            border-color: rgba(239, 68, 68, 0.4);
+            color: #ef4444;
+        }
+        .nps-btn:hover:nth-child(8), .nps-btn:hover:nth-child(9) {
+            border-color: rgba(245, 158, 11, 0.4);
+            color: #f59e0b;
+        }
+        .nps-btn:hover:nth-child(10), .nps-btn:hover:nth-child(11) {
+            border-color: rgba(16, 185, 129, 0.4);
+            color: var(--accent-green);
+        }
+
+        /* ===== TEXTAREA SUGGESTIONS ===== */
+        .textarea-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .textarea-input {
+            width: 100%;
+            background: rgba(7, 9, 19, 0.45);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 15px;
+            padding-bottom: 35px;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            resize: vertical;
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        .textarea-input:focus {
+            border-color: rgba(0, 242, 254, 0.45);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.12);
+            background: rgba(7, 9, 19, 0.6);
+        }
+
+        .char-counter {
+            position: absolute;
+            bottom: 12px;
+            right: 15px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        /* ===== SUBMIT ACTIONS ===== */
+        .form-actions {
+            margin-top: 10px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .btn-submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 14px 35px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+            border: none;
+            border-radius: 30px;
+            color: var(--bg-dark);
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.25);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 242, 254, 0.45);
+            background: linear-gradient(90deg, #00f6ff, #0084ff);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .submit-spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        /* ===== SUCCESS SCREEN ===== */
+        .success-screen {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: var(--bg-dark);
-            z-index: 10;
-            transition: opacity 0.5s ease;
+            text-align: center;
+            padding: 40px 10px;
+            animation: fadeIn 0.6s ease both;
         }
 
-        .loader-pulse {
-            width: 65px;
-            height: 65px;
-            border: 3px solid rgba(0, 242, 254, 0.1);
-            border-top-color: var(--accent-cyan);
-            border-radius: 50%;
-            animation: spin 1s infinite linear;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .success-icon-wrapper {
             margin-bottom: 24px;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.1);
         }
 
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+        .success-checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: var(--accent-green);
+            stroke-miterlimit: 10;
+            box-shadow: inset 0px 0px 0px var(--accent-green);
+            animation: fill .4s ease-in-out .4s forwards, scaleCheck .3s ease-in-out .9s both;
         }
 
-        .loader-text {
+        .success-checkmark-circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: var(--accent-green);
+            fill: none;
+            animation: strokeCheck .6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .success-checkmark-check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            stroke: var(--accent-green);
+            animation: strokeCheck .3s cubic-bezier(0.65, 0, 0.45, 1) .8s forwards;
+        }
+
+        @keyframes strokeCheck {
+            100% { stroke-dashoffset: 0; }
+        }
+
+        @keyframes fill {
+            100% { box-shadow: inset 0px 0px 0px 80px rgba(16, 185, 129, 0.1); }
+        }
+
+        @keyframes scaleCheck {
+            0%, 100% { transform: none; }
+            50% { transform: scale3d(1.1, 1.1, 1); }
+        }
+
+        .success-screen h3 {
             font-family: var(--font-title);
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--accent-cyan);
-            letter-spacing: 2.5px;
-            margin-bottom: 8px;
-            text-shadow: 0 0 10px rgba(0, 242, 254, 0.35);
-            animation: pulseText 1.6s infinite ease-in-out alternate;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            letter-spacing: 1px;
         }
 
-        @keyframes pulseText {
-            from {
-                opacity: 0.5;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .loader-subtext {
-            font-family: var(--font-body);
-            font-size: 0.8rem;
+        .success-screen p {
+            font-size: 0.95rem;
             color: var(--text-secondary);
-            letter-spacing: 0.5px;
+            max-width: 480px;
+            line-height: 1.6;
+            margin-bottom: 30px;
         }
 
-        /* ===== FOOTER BAR ===== */
-        .footer {
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            color: var(--text-primary);
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
+        }
+
+        /* ===== CONFIGURATION MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(7, 9, 19, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease both;
+        }
+
+        .modal-card {
+            background: #0d1226;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            max-width: 680px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 24px 40px;
-            border-top: 1px solid var(--card-border);
-            background: rgba(7, 9, 19, 0.85);
-            font-family: var(--font-body);
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-top: auto;
+            padding: 20px 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        .footer-left {
+        .modal-header h3 {
+            font-family: var(--font-title);
+            font-size: 1rem;
+            letter-spacing: 1.5px;
+            color: var(--accent-cyan);
+        }
+
+        .close-modal-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.8rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s ease;
+        }
+
+        .close-modal-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 25px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .modal-intro {
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .steps-list {
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            list-style-type: decimal;
+        }
+
+        .steps-list li {
+            margin-bottom: 5px;
+        }
+
+        .steps-list strong {
+            color: var(--text-primary);
+        }
+
+        .code-container {
+            position: relative;
+            background: #070913;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .code-container pre {
+            margin: 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.8rem;
+            color: #a5b4fc;
+            text-align: left;
+        }
+
+        .btn-copy {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-copy:hover {
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--accent-cyan);
+            border-color: rgba(0, 242, 254, 0.3);
+        }
+
+        .input-url-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .input-url {
+            flex: 1;
+            background: #070913;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 10px 15px;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .input-url:focus {
+            border-color: var(--accent-cyan);
+        }
+
+        /* Toast notifications */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--accent-cyan);
+            box-shadow: var(--glow-cyan);
+            border-radius: 10px;
+            padding: 15px 25px;
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 2000;
+            animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* ===== AUTOCOMPLETE SUITE (SUCURSALES) ===== */
+        .survey-form .form-group:first-child {
+            position: relative;
+            z-index: 20;
+        }
+
+        .autocomplete-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .input-search-container {
+            position: relative;
             display: flex;
             align-items: center;
-            gap: 8px;
+            width: 100%;
         }
 
-        /* ===== FULLSCREEN VIEW HANDLING ===== */
-        .dashboard-viewport:fullscreen {
-            padding: 20px;
-            background: var(--bg-dark);
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        .input-text-style {
+            width: 100%;
+            background: rgba(7, 9, 19, 0.45);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 14px 15px 14px 45px;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        .input-text-style:focus {
+            border-color: rgba(0, 242, 254, 0.45);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.12);
+            background: rgba(7, 9, 19, 0.6);
+        }
+
+        .clear-search-btn {
+            position: absolute;
+            right: 15px;
+            background: none;
             border: none;
-            border-radius: 0;
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
         }
 
-        .dashboard-viewport:fullscreen .iframe-wrapper {
-            height: calc(100vh - 100px);
+        .clear-search-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .autocomplete-suggestions {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            max-height: 250px;
+            overflow-y: auto;
+            z-index: 100;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .suggestion-item {
+            padding: 12px 18px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: var(--transition-smooth);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            text-align: left;
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .suggestion-item:hover {
+            background: rgba(0, 242, 254, 0.08);
+        }
+
+        .suggestion-name {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .suggestion-address {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+        }
+
+        .selected-sucursal-preview {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(0, 242, 254, 0.04);
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            border-radius: 12px;
+            padding: 14px 20px;
+            margin-top: 10px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .preview-icon {
+            font-size: 1.5rem;
+        }
+
+        .preview-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex: 1;
+            text-align: left;
+        }
+
+        .preview-details strong {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .preview-details small {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        /* ===== CARDS FOR Q3 AND Q4 ===== */
+        .option-cards-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+
+        .option-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 15px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .option-card:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+        }
+
+        .option-card-emoji {
+            font-size: 1.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .option-card:hover .option-card-emoji {
+            transform: scale(1.15);
+        }
+
+        /* Excelente: green theme */
+        .option-card[data-value="Excelente"]:hover {
+            border-color: rgba(16, 185, 129, 0.35);
+        }
+        .option-card[data-value="Excelente"].selected {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+        }
+
+        /* Buena: cyan theme */
+        .option-card[data-value="Buena"]:hover {
+            border-color: rgba(0, 242, 254, 0.35);
+        }
+        .option-card[data-value="Buena"].selected {
+            background: rgba(0, 242, 254, 0.12);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            box-shadow: var(--glow-cyan);
+        }
+
+        /* Regular: orange theme */
+        .option-card[data-value="Regular"]:hover {
+            border-color: rgba(245, 158, 11, 0.35);
+        }
+        .option-card[data-value="Regular"].selected {
+            background: rgba(245, 158, 11, 0.12);
+            border-color: #f59e0b;
+            color: #f59e0b;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+        }
+
+        /* Mala: red theme */
+        .option-card[data-value="Mala"]:hover {
+            border-color: rgba(239, 68, 68, 0.35);
+        }
+        .option-card[data-value="Mala"].selected {
+            background: rgba(239, 68, 68, 0.12);
+            border-color: #ef4444;
+            color: #ef4444;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
         }
 
         /* ===== RESPONSIVE BREAKPOINTS ===== */
@@ -489,9 +1130,29 @@
                 padding: 20px;
                 gap: 24px;
             }
+        }
 
-            .iframe-wrapper {
-                height: 600px;
+        @media (max-width: 768px) {
+            .nps-grid {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+            .nps-btn {
+                flex: 0 0 calc(18% - 8px); /* 5 elements per row roughly */
+                aspect-ratio: 1;
+                min-width: 38px;
+            }
+            .chip-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .option-cards-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .survey-card {
+                padding: 25px;
             }
         }
 
@@ -502,11 +1163,6 @@
                 text-align: center;
                 padding: 20px;
             }
-
-            .ctrl-btn span {
-                display: none;
-            }
-
         }
     </style>
 </head>
@@ -542,45 +1198,163 @@
     <div class="main-container">
 
 
-        <!-- Looker Studio Dashboard Wrapper -->
-        <main class="dashboard-viewport" id="dashboard-container">
-            <div class="dashboard-bar">
-                <div class="bar-title">
-                    <span class="pulse-indicator"></span>
-                    <h2>DASHBOARD DE VENTAS & ANALÍTICA INTEGRAL</h2>
+        <!-- Encuesta de Satisfacción -->
+        <main class="survey-card" id="survey-container">
+            <div class="survey-header">
+                <div class="survey-header-title">
+                    <div class="pulse-indicator"></div>
+                    <h2>ENCUESTA DE SATISFACCIÓN</h2>
                 </div>
-                <div class="bar-controls">
-                    <button class="ctrl-btn" onclick="refreshDashboard()" title="Actualizar Datos">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
-                        </svg>
-                        <span>Actualizar</span>
-                    </button>
-                    <button class="ctrl-btn" onclick="toggleFullScreen()" title="Pantalla Completa">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
-                        </svg>
-                        <span>Pantalla Completa</span>
-                    </button>
-                </div>
+                <button class="config-btn" id="open-config-btn" title="Configurar Google Sheets">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    <span>Configurar Destino</span>
+                </button>
             </div>
 
-            <div class="iframe-wrapper">
-                <!-- Skeleton Loader -->
-                <div class="loader-container" id="iframe-loader">
-                    <div class="loader-pulse"></div>
-                    <div class="loader-text">ESTABLECIENDO CONEXIÓN SEGURA CON EL SERVIDOR DE DATOS...</div>
-                    <div class="loader-subtext">Cargando visualizaciones analíticas del sistema comercial SAIG24</div>
+            <!-- Survey Form -->
+            <form id="survey-form" class="survey-form">
+                <!-- Sucursal Selection -->
+                <div class="form-group">
+                    <label class="form-label">📍 Selecciona la sucursal del local donde realizaste tu compra</label>
+                    <div class="autocomplete-wrapper">
+                        <div class="input-search-container">
+                            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            <input type="text" id="sucursal-search" class="input-text-style" placeholder="Escribe el nombre o la dirección de la sucursal..." autocomplete="off">
+                            <button type="button" class="clear-search-btn" id="clear-sucursal-btn" style="display: none;">&times;</button>
+                        </div>
+                        <input type="hidden" id="selected-sucursal-id">
+                        <div class="autocomplete-suggestions" id="sucursal-suggestions" style="display: none;"></div>
+                    </div>
+                    <div class="selected-sucursal-preview" id="selected-sucursal-preview" style="display: none;">
+                        <span class="preview-icon">📍</span>
+                        <div class="preview-details">
+                            <strong id="preview-name"></strong>
+                            <small id="preview-address"></small>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Iframe -->
-                <iframe 
-                    id="looker-iframe"
-                    src="https://lookerstudio.google.com/embed/reporting/a1957880-ef25-4e1e-ab18-959ded2c6281/page/1M" 
-                    frameborder="0" 
-                    allowfullscreen
-                    sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
-                </iframe>
+                <!-- Question 1: Experiencia de Compra -->
+                <div class="form-group">
+                    <label class="form-label">1. ¿Cómo calificás tu experiencia de compra hoy?</label>
+                    <div class="rating-container" id="rating-experiencia">
+                        <button type="button" class="rating-star" data-value="1" aria-label="1 estrella">★</button>
+                        <button type="button" class="rating-star" data-value="2" aria-label="2 estrellas">★</button>
+                        <button type="button" class="rating-star" data-value="3" aria-label="3 estrellas">★</button>
+                        <button type="button" class="rating-star" data-value="4" aria-label="4 estrellas">★</button>
+                        <button type="button" class="rating-star" data-value="5" aria-label="5 estrellas">★</button>
+                        <span class="rating-label" id="label-experiencia">Selecciona una calificación</span>
+                    </div>
+                </div>
+
+                <!-- Question 2: Encontraste lo que buscabas -->
+                <div class="form-group">
+                    <label class="form-label">2. ¿Encontraste lo que buscabas?</label>
+                    <div class="chip-container" id="found-chips">
+                        <button type="button" class="chip-btn" data-value="Sí">
+                            <span class="chip-icon">✓</span>
+                            <span>Sí</span>
+                        </button>
+                        <button type="button" class="chip-btn" data-value="No">
+                            <span class="chip-icon">✗</span>
+                            <span>No</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Question 3: Atención Recibida -->
+                <div class="form-group">
+                    <label class="form-label">3. ¿Cómo calificás la atención recibida?</label>
+                    <div class="option-cards-container" id="atencion-cards">
+                        <button type="button" class="option-card" data-value="Excelente">
+                            <span class="option-card-emoji">🤩</span>
+                            <span>Excelente</span>
+                        </button>
+                        <button type="button" class="option-card" data-value="Buena">
+                            <span class="option-card-emoji">😊</span>
+                            <span>Buena</span>
+                        </button>
+                        <button type="button" class="option-card" data-value="Regular">
+                            <span class="option-card-emoji">😐</span>
+                            <span>Regular</span>
+                        </button>
+                        <button type="button" class="option-card" data-value="Mala">
+                            <span class="option-card-emoji">😞</span>
+                            <span>Mala</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Question 4: Limpieza y Orden -->
+                <div class="form-group">
+                    <label class="form-label">4. ¿Cómo calificás la limpieza y el orden del local?</label>
+                    <div class="option-cards-container" id="limpieza-cards">
+                        <button type="button" class="option-card" data-value="Excelente">
+                            <span class="option-card-emoji">✨</span>
+                            <span>Excelente</span>
+                        </button>
+                        <button type="button" class="option-card" data-value="Buena">
+                            <span class="option-card-emoji">🧹</span>
+                            <span>Buena</span>
+                        </button>
+                        <button type="button" class="option-card" data-value="Regular">
+                            <span class="option-card-emoji">👍</span>
+                            <span>Regular</span>
+                        </button>
+                        <button type="button" class="option-card" data-value="Mala">
+                            <span class="option-card-emoji">⚠️</span>
+                            <span>Mala</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Question 5: Recomendarías a amigos/familiares -->
+                <div class="form-group">
+                    <label class="form-label">5. ¿Nos recomendarías a familiares o amigos?</label>
+                    <div class="chip-container" id="recommend-chips">
+                        <button type="button" class="chip-btn" data-value="Sí">
+                            <span class="chip-icon">✓</span>
+                            <span>Sí</span>
+                        </button>
+                        <button type="button" class="chip-btn" data-value="No">
+                            <span class="chip-icon">✗</span>
+                            <span>No</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Question 6: Qué podríamos mejorar -->
+                <div class="form-group">
+                    <label class="form-label">6. ¿Qué podríamos mejorar?</label>
+                    <div class="textarea-wrapper">
+                        <textarea id="improvements-textarea" class="textarea-input" placeholder="Tu opinión es muy valiosa para nosotros. Escribe aquí tus sugerencias..." maxlength="500" rows="4"></textarea>
+                        <div class="char-counter"><span id="char-count">0</span> / 500</div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit" id="submit-btn">
+                        <span>Enviar Encuesta</span>
+                        <svg class="submit-spinner" id="submit-spinner" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Success State Screen -->
+            <div id="success-screen" class="success-screen" style="display: none;">
+                <div class="success-icon-wrapper">
+                    <svg class="success-checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                        <circle class="success-checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="success-checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                </div>
+                <h3>¡Muchas gracias por tu tiempo!</h3>
+                <p>Tus respuestas han sido registradas y nos ayudarán a seguir mejorando nuestro servicio en SAIG24.</p>
+                <div class="success-actions">
+                    <button type="button" class="btn-secondary" onclick="resetSurveyForm()">
+                        <span>Enviar otra encuesta</span>
+                    </button>
+                </div>
             </div>
         </main>
 
@@ -596,38 +1370,527 @@
         </div>
     </footer>
 
+    <!-- Modal de Configuración de Google Sheets -->
+    <div id="config-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Configuración de Google Sheets</h3>
+                <button class="close-modal-btn" id="close-config-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-intro">Sigue estos pasos para vincular los resultados de la encuesta a tu hoja de cálculo:</p>
+                
+                <ol class="steps-list">
+                    <li>Crea una nueva hoja de cálculo en <strong>Google Sheets</strong>.</li>
+                    <li>Ve a <strong>Extensiones &gt; Apps Script</strong> en el menú superior.</li>
+                    <li>Borra el código existente y pega el siguiente script:
+                        <div class="code-container">
+                            <pre><code id="apps-script-code">function doPost(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow([
+      "Fecha", 
+      "ID Sucursal",
+      "Nombre Sucursal",
+      "Experiencia de Compra", 
+      "Encontró lo que Buscaba", 
+      "Calificación Atención", 
+      "Limpieza y Orden", 
+      "Recomendaría a Amigos", 
+      "Mejoras Sugeridas"
+    ]);
+  }
+  
+  try {
+    var data = JSON.parse(e.postData.contents);
+    sheet.appendRow([
+      new Date(),
+      data.sucursalId,
+      data.sucursalNombre,
+      data.experiencia,
+      data.encontrado,
+      data.atencion,
+      data.limpieza,
+      data.recomendar,
+      data.mejoras
+    ]);
+    
+    return ContentService.createTextOutput(JSON.stringify({ "status": "success" }))
+      .setMimeType(ContentService.MimeType.JSON)
+      .setHeader("Access-Control-Allow-Origin", "*");
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({ "status": "error", "message": error.toString() }))
+      .setMimeType(ContentService.MimeType.JSON)
+      .setHeader("Access-Control-Allow-Origin", "*");
+  }
+}
+
+function doOptions(e) {
+  return ContentService.createTextOutput("")
+    .setHeader("Access-Control-Allow-Origin", "*")
+    .setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
+    .setHeader("Access-Control-Allow-Headers", "Content-Type");
+}</code></pre>
+                            <button class="btn-copy" id="btn-copy-code" type="button">Copiar Código</button>
+                        </div>
+                    </li>
+                    <li>Haz clic en el botón de <strong>Guardar</strong> (icono de disco).</li>
+                    <li>Haz clic en <strong>Implementar &gt; Nueva implementación</strong>.</li>
+                    <li>Selecciona el tipo de implementación haciendo clic en el engranaje y eligiendo <strong>Aplicación web</strong>.</li>
+                    <li>Configura los campos:
+                        <ul>
+                            <li><strong>Descripción:</strong> Webhook Encuesta SAIG24</li>
+                            <li><strong>Ejecutar como:</strong> Yo (tu cuenta)</li>
+                            <li><strong>Quién tiene acceso:</strong> Cualquier persona (esto permite que la web envíe datos)</li>
+                        </ul>
+                    </li>
+                    <li>Haz clic en <strong>Implementar</strong>. Autoriza los accesos si Google lo solicita.</li>
+                    <li>Copia la <strong>URL de la aplicación web</strong> generada.</li>
+                    <li>Pégala aquí abajo y presiona Guardar:
+                        <div class="input-url-container">
+                            <input type="url" id="sheet-webhook-url" class="input-url" placeholder="https://script.google.com/macros/s/.../exec">
+                            <button class="btn-primary" id="btn-save-url" style="padding: 10px 20px;" type="button">Guardar URL</button>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
     <script>
-        /* ===== SKELETON LOADER FADE OUT ON IFRAME LOAD ===== */
-        const iframe = document.getElementById("looker-iframe");
-        const loader = document.getElementById("iframe-loader");
+        /* ===== CONFIGURACIÓN Y ESTADOS DE LA ENCUESTA ===== */
+        const DEFAULT_GOOGLE_SCRIPT_URL = '';
+        let googleScriptUrl = localStorage.getItem('saig24_survey_webhook') || DEFAULT_GOOGLE_SCRIPT_URL;
 
-        iframe.addEventListener("load", () => {
-            loader.style.opacity = "0";
-            setTimeout(() => {
-                loader.style.display = "none";
-                iframe.style.opacity = "1";
-            }, 600);
-        });
+        // Variables de estado del formulario (Cuestionario v2)
+        let selectedSucursal = null;
+        let selectedExperienciaCompra = 0;
+        let selectedEncontrado = '';
+        let selectedAtencion = '';
+        let selectedLimpieza = '';
+        let selectedRecomendar = '';
 
-        /* ===== CONTROLS: REFRESH DASHBOARD ===== */
-        function refreshDashboard() {
-            loader.style.display = "flex";
-            loader.style.opacity = "1";
-            iframe.style.opacity = "0";
-            // Forces iframe reload
-            iframe.src = iframe.src;
+        const ratingTexts = {
+            1: "Muy mala",
+            2: "Mala",
+            3: "Regular",
+            4: "Buena",
+            5: "Excelente"
+        };
+
+        // --- Manejo del Modal de Configuración ---
+        const configModal = document.getElementById('config-modal');
+        const openConfigBtn = document.getElementById('open-config-btn');
+        const closeConfigBtn = document.getElementById('close-config-btn');
+        const webhookInput = document.getElementById('sheet-webhook-url');
+        const saveUrlBtn = document.getElementById('btn-save-url');
+        const copyCodeBtn = document.getElementById('btn-copy-code');
+
+        webhookInput.value = googleScriptUrl;
+
+        // Mostrar botón de configuración solo si se pasa ?admin en la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('admin')) {
+            openConfigBtn.style.setProperty('display', 'inline-flex', 'important');
         }
 
-        /* ===== CONTROLS: FULL SCREEN SYSTEM ===== */
-        function toggleFullScreen() {
-            const container = document.getElementById("dashboard-container");
-            if (!document.fullscreenElement) {
-                container.requestFullscreen().catch(err => {
-                    console.error(`Error al intentar activar pantalla completa: ${err.message}`);
-                });
-            } else {
-                document.exitFullscreen();
+        openConfigBtn.addEventListener('click', () => {
+            webhookInput.value = googleScriptUrl;
+            configModal.style.display = 'flex';
+        });
+
+        closeConfigBtn.addEventListener('click', () => {
+            configModal.style.display = 'none';
+        });
+
+        configModal.addEventListener('click', (e) => {
+            if (e.target === configModal) {
+                configModal.style.display = 'none';
             }
+        });
+
+        saveUrlBtn.addEventListener('click', () => {
+            const urlVal = webhookInput.value.trim();
+            if (urlVal === '' || urlVal.startsWith('https://script.google.com/')) {
+                googleScriptUrl = urlVal;
+                localStorage.setItem('saig24_survey_webhook', urlVal);
+                showToast(urlVal === '' ? 'URL eliminada. La encuesta funcionará en modo de prueba.' : 'URL de Google Sheets guardada correctamente.');
+                configModal.style.display = 'none';
+            } else {
+                showToast('Por favor, ingresa una URL válida de Google Apps Script.');
+            }
+        });
+
+        copyCodeBtn.addEventListener('click', () => {
+            const codeText = document.getElementById('apps-script-code').innerText;
+            navigator.clipboard.writeText(codeText).then(() => {
+                const origText = copyCodeBtn.innerText;
+                copyCodeBtn.innerText = '¡Copiado!';
+                showToast('Código copiado al portapapeles.');
+                setTimeout(() => {
+                    copyCodeBtn.innerText = origText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Error al copiar el código: ', err);
+            });
+        });
+
+        // --- Utilidades de Interfaz ---
+        function showToast(message) {
+            const oldToast = document.querySelector('.toast');
+            if (oldToast) oldToast.remove();
+
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerText = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => toast.remove(), 500);
+            }, 3500);
+        }
+
+        // --- Lógica de Autocompletado de Sucursal ---
+        const sucursalSearch = document.getElementById('sucursal-search');
+        const sucursalSuggestions = document.getElementById('sucursal-suggestions');
+        const clearSucursalBtn = document.getElementById('clear-sucursal-btn');
+        const selectedPreview = document.getElementById('selected-sucursal-preview');
+        const previewName = document.getElementById('preview-name');
+        const previewAddress = document.getElementById('preview-address');
+        const selectedIdInput = document.getElementById('selected-sucursal-id');
+
+        sucursalSearch.addEventListener('input', (e) => {
+            const filterVal = e.target.value.toLowerCase().trim();
+            
+            if (filterVal.length < 2) {
+                sucursalSuggestions.style.display = 'none';
+                clearSucursalBtn.style.display = 'none';
+                return;
+            }
+
+            clearSucursalBtn.style.display = 'block';
+            
+            if (typeof sucursalesData === 'undefined') {
+                console.error('La variable sucursalesData no está definida.');
+                return;
+            }
+
+            const matches = sucursalesData.filter(s => 
+                s.name.toLowerCase().includes(filterVal) || 
+                s.address.toLowerCase().includes(filterVal)
+            ).slice(0, 5);
+
+            if (matches.length > 0) {
+                sucursalSuggestions.innerHTML = '';
+                matches.forEach(s => {
+                    const div = document.createElement('div');
+                    div.className = 'suggestion-item';
+                    div.innerHTML = `
+                        <span class="suggestion-name">${s.name}</span>
+                        <span class="suggestion-address">${s.address}</span>
+                    `;
+                    div.addEventListener('click', () => {
+                        selectSucursal(s);
+                    });
+                    sucursalSuggestions.appendChild(div);
+                });
+                sucursalSuggestions.style.display = 'block';
+            } else {
+                sucursalSuggestions.innerHTML = '<div style="padding: 12px 18px; color: var(--text-secondary); font-size: 0.85rem; text-align: left;">No se encontraron sucursales</div>';
+                sucursalSuggestions.style.display = 'block';
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.autocomplete-wrapper')) {
+                sucursalSuggestions.style.display = 'none';
+            }
+        });
+
+        clearSucursalBtn.addEventListener('click', clearSucursalSelection);
+
+        function selectSucursal(s) {
+            selectedSucursal = s;
+            selectedIdInput.value = s.id;
+            sucursalSearch.value = s.name;
+            sucursalSuggestions.style.display = 'none';
+
+            previewName.innerText = s.name;
+            previewAddress.innerText = s.address;
+            selectedPreview.style.display = 'flex';
+        }
+
+        function clearSucursalSelection() {
+            selectedSucursal = null;
+            selectedIdInput.value = '';
+            sucursalSearch.value = '';
+            selectedPreview.style.display = 'none';
+            clearSucursalBtn.style.display = 'none';
+            sucursalSuggestions.style.display = 'none';
+        }
+
+        // --- Lógica del Sistema de Estrellas (Experiencia de Compra) ---
+        setupStars('rating-experiencia', 'label-experiencia', (val) => {
+            selectedExperienciaCompra = val;
+        });
+
+        function setupStars(containerId, labelId, callback) {
+            const container = document.getElementById(containerId);
+            const label = document.getElementById(labelId);
+            const stars = container.querySelectorAll('.rating-star');
+
+            stars.forEach(star => {
+                star.addEventListener('mouseenter', () => {
+                    const hoverValue = parseInt(star.getAttribute('data-value'));
+                    highlightStars(stars, hoverValue, true);
+                    label.innerText = ratingTexts[hoverValue];
+                });
+
+                star.addEventListener('mouseleave', () => {
+                    const currentValue = parseInt(container.getAttribute('data-selected') || '0');
+                    highlightStars(stars, currentValue, false);
+                    label.innerText = currentValue > 0 ? ratingTexts[currentValue] : "Selecciona una calificación";
+                });
+
+                star.addEventListener('click', () => {
+                    const value = parseInt(star.getAttribute('data-value'));
+                    container.setAttribute('data-selected', value);
+                    highlightStars(stars, value, false);
+                    label.innerText = ratingTexts[value];
+                    callback(value);
+                });
+            });
+        }
+
+        function highlightStars(stars, value, isHover) {
+            stars.forEach(star => {
+                const starVal = parseInt(star.getAttribute('data-value'));
+                if (starVal <= value) {
+                    if (isHover) {
+                        star.classList.add('hovered');
+                    } else {
+                        star.classList.add('selected');
+                        star.classList.remove('hovered');
+                    }
+                } else {
+                    star.classList.remove('selected', 'hovered');
+                }
+            });
+        }
+
+        // --- Lógica de Chips (Pregunta 2: Encontró lo que buscaba) ---
+        const foundChips = document.querySelectorAll('#found-chips .chip-btn');
+        foundChips.forEach(btn => {
+            btn.addEventListener('click', () => {
+                foundChips.forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                selectedEncontrado = btn.getAttribute('data-value');
+            });
+        });
+
+        // --- Lógica de Tarjetas (Pregunta 3: Atención Recibida) ---
+        const atencionCards = document.querySelectorAll('#atencion-cards .option-card');
+        atencionCards.forEach(card => {
+            card.addEventListener('click', () => {
+                atencionCards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedAtencion = card.getAttribute('data-value');
+            });
+        });
+
+        // --- Lógica de Tarjetas (Pregunta 4: Limpieza y Orden) ---
+        const limpiezaCards = document.querySelectorAll('#limpieza-cards .option-card');
+        limpiezaCards.forEach(card => {
+            card.addEventListener('click', () => {
+                limpiezaCards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedLimpieza = card.getAttribute('data-value');
+            });
+        });
+
+        // --- Lógica de Chips (Pregunta 5: Recomendaría a amigos) ---
+        const recommendChips = document.querySelectorAll('#recommend-chips .chip-btn');
+        recommendChips.forEach(btn => {
+            btn.addEventListener('click', () => {
+                recommendChips.forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                selectedRecomendar = btn.getAttribute('data-value');
+            });
+        });
+
+        // --- Contador de Caracteres ---
+        const textarea = document.getElementById('improvements-textarea');
+        const charCount = document.getElementById('char-count');
+        textarea.addEventListener('input', () => {
+            charCount.innerText = textarea.value.length;
+        });
+
+        // --- Envío del Formulario ---
+        const form = document.getElementById('survey-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const submitSpinner = document.getElementById('submit-spinner');
+        const successScreen = document.getElementById('success-screen');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Validaciones obligatorias
+            if (!selectedSucursal) {
+                showToast('Por favor, selecciona la sucursal donde realizaste tu compra.');
+                document.getElementById('sucursal-search').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            if (selectedExperienciaCompra === 0) {
+                showToast('Por favor, califica tu experiencia de compra (Pregunta 1).');
+                document.getElementById('rating-experiencia').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            if (selectedEncontrado === '') {
+                showToast('Por favor, indica si encontraste lo que buscabas (Pregunta 2).');
+                document.getElementById('found-chips').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            if (selectedAtencion === '') {
+                showToast('Por favor, califica la atención recibida (Pregunta 3).');
+                document.getElementById('atencion-cards').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            if (selectedLimpieza === '') {
+                showToast('Por favor, califica la limpieza y orden del local (Pregunta 4).');
+                document.getElementById('limpieza-cards').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            if (selectedRecomendar === '') {
+                showToast('Por favor, indica si nos recomendarías (Pregunta 5).');
+                document.getElementById('recommend-chips').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            const data = {
+                sucursalId: selectedSucursal.id,
+                sucursalNombre: selectedSucursal.name,
+                experiencia: selectedExperienciaCompra,
+                encontrado: selectedEncontrado,
+                atencion: selectedAtencion,
+                limpieza: selectedLimpieza,
+                recomendar: selectedRecomendar,
+                mejoras: textarea.value.trim()
+            };
+
+            submitBtn.disabled = true;
+            submitSpinner.style.display = 'inline-block';
+
+            if (!googleScriptUrl) {
+                setTimeout(() => {
+                    showToast('Modo de prueba: Envío simulado con éxito.');
+                    showSuccessState();
+                }, 1200);
+            } else {
+                fetch(googleScriptUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(() => {
+                    showSuccessState();
+                })
+                .catch(error => {
+                    console.error('Error al enviar la encuesta:', error);
+                    showToast('Hubo un error al enviar los datos. Revisa la consola o tu configuración.');
+                    submitBtn.disabled = false;
+                    submitSpinner.style.display = 'none';
+                });
+            }
+        });
+
+        function showSuccessState() {
+            form.style.display = 'none';
+            successScreen.style.display = 'flex';
+            triggerSuccessConfetti();
+        }
+
+        function resetSurveyForm() {
+            // Limpiar estados
+            clearSucursalSelection();
+            selectedExperienciaCompra = 0;
+            selectedEncontrado = '';
+            selectedAtencion = '';
+            selectedLimpieza = '';
+            selectedRecomendar = '';
+
+            // Limpiar interfaz
+            document.getElementById('rating-experiencia').removeAttribute('data-selected');
+            document.getElementById('rating-experiencia').querySelectorAll('.rating-star').forEach(s => s.classList.remove('selected', 'hovered'));
+            document.getElementById('label-experiencia').innerText = 'Selecciona una calificación';
+
+            foundChips.forEach(b => b.classList.remove('selected'));
+            atencionCards.forEach(c => c.classList.remove('selected'));
+            limpiezaCards.forEach(c => c.classList.remove('selected'));
+            recommendChips.forEach(b => b.classList.remove('selected'));
+
+            textarea.value = '';
+            charCount.innerText = '0';
+
+            successScreen.style.display = 'none';
+            form.style.display = 'flex';
+            
+            submitBtn.disabled = false;
+            submitSpinner.style.display = 'none';
+        }
+
+        function triggerSuccessConfetti() {
+            const duration = 2000;
+            const end = Date.now() + duration;
+            
+            const successParticles = [];
+            for (let i = 0; i < 50; i++) {
+                successParticles.push({
+                    x: canvas.width / 2,
+                    y: canvas.height / 2,
+                    vx: (Math.random() - 0.5) * 15,
+                    vy: (Math.random() - 0.75) * 15 - 5,
+                    color: Math.random() > 0.5 ? '#10b981' : '#00f2fe',
+                    radius: Math.random() * 4 + 2,
+                    alpha: 1,
+                    decay: Math.random() * 0.02 + 0.015
+                });
+            }
+
+            function drawConfetti() {
+                ctx.fillStyle = "rgba(7, 9, 19, 0.15)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                let active = false;
+                successParticles.forEach(p => {
+                    if (p.alpha > 0) {
+                        active = true;
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.vy += 0.3;
+                        p.alpha -= p.decay;
+                        
+                        ctx.save();
+                        ctx.globalAlpha = p.alpha;
+                        ctx.fillStyle = p.color;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                        ctx.fill();
+                        ctx.restore();
+                    }
+                });
+
+                if (Date.now() < end && active) {
+                    requestAnimationFrame(drawConfetti);
+                }
+            }
+            
+            drawConfetti();
         }
 
         /* ===== MATRIX BG DYNAMICS (REFINED & SOFT) ===== */
