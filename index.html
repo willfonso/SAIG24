@@ -7,7 +7,9 @@
     <title>SAIG24 · Portal Analítico Corporativo</title>
 
     <!-- Google Fonts: Orbitron for tech titles and Inter for clean business data -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- Carga de las 100 sucursales para autocompletar -->
     <script src="sucursales.json"></script>
@@ -38,7 +40,8 @@
             box-sizing: border-box;
         }
 
-        html, body {
+        html,
+        body {
             width: 100%;
             min-height: 100vh;
             background-color: var(--bg-dark);
@@ -57,7 +60,8 @@
             width: 100%;
             height: 100%;
             z-index: -2;
-            opacity: 0.12; /* Very subtle corporate feel */
+            opacity: 0.12;
+            /* Very subtle corporate feel */
             pointer-events: none;
         }
 
@@ -93,9 +97,11 @@
             0% {
                 transform: translate(0, 0) scale(1);
             }
+
             50% {
                 transform: translate(100px, 50px) scale(1.15);
             }
+
             100% {
                 transform: translate(-50px, -100px) scale(0.9);
             }
@@ -130,10 +136,13 @@
         }
 
         @keyframes logoPulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
                 filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.3));
             }
+
             50% {
                 transform: scale(1.04);
                 filter: drop-shadow(0 0 18px rgba(0, 242, 254, 0.6));
@@ -176,9 +185,11 @@
             0% {
                 box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
             }
+
             70% {
                 box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
             }
+
             100% {
                 box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
             }
@@ -356,17 +367,32 @@
             animation: fadeInUp 0.5s ease both;
         }
 
-        .form-group:nth-child(1) { animation-delay: 0.05s; }
-        .form-group:nth-child(2) { animation-delay: 0.1s; }
-        .form-group:nth-child(3) { animation-delay: 0.15s; }
-        .form-group:nth-child(4) { animation-delay: 0.2s; }
-        .form-group:nth-child(5) { animation-delay: 0.25s; }
+        .form-group:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+
+        .form-group:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .form-group:nth-child(3) {
+            animation-delay: 0.15s;
+        }
+
+        .form-group:nth-child(4) {
+            animation-delay: 0.2s;
+        }
+
+        .form-group:nth-child(5) {
+            animation-delay: 0.25s;
+        }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(15px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -524,11 +550,15 @@
             border-color: rgba(239, 68, 68, 0.4);
             color: #ef4444;
         }
-        .nps-btn:hover:nth-child(8), .nps-btn:hover:nth-child(9) {
+
+        .nps-btn:hover:nth-child(8),
+        .nps-btn:hover:nth-child(9) {
             border-color: rgba(245, 158, 11, 0.4);
             color: #f59e0b;
         }
-        .nps-btn:hover:nth-child(10), .nps-btn:hover:nth-child(11) {
+
+        .nps-btn:hover:nth-child(10),
+        .nps-btn:hover:nth-child(11) {
             border-color: rgba(16, 185, 129, 0.4);
             color: var(--accent-green);
         }
@@ -626,8 +656,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .success-icon-wrapper {
@@ -665,16 +702,27 @@
         }
 
         @keyframes strokeCheck {
-            100% { stroke-dashoffset: 0; }
+            100% {
+                stroke-dashoffset: 0;
+            }
         }
 
         @keyframes fill {
-            100% { box-shadow: inset 0px 0px 0px 80px rgba(16, 185, 129, 0.1); }
+            100% {
+                box-shadow: inset 0px 0px 0px 80px rgba(16, 185, 129, 0.1);
+            }
         }
 
         @keyframes scaleCheck {
-            0%, 100% { transform: none; }
-            50% { transform: scale3d(1.1, 1.1, 1); }
+
+            0%,
+            100% {
+                transform: none;
+            }
+
+            50% {
+                transform: scale3d(1.1, 1.1, 1);
+            }
         }
 
         .success-screen h3 {
@@ -747,8 +795,15 @@
         }
 
         @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .modal-header {
@@ -887,8 +942,15 @@
         }
 
         @keyframes slideInRight {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         /* ===== AUTOCOMPLETE SUITE (SUCURSALES) ===== */
@@ -1073,6 +1135,7 @@
         .option-card[data-value="Excelente"]:hover {
             border-color: rgba(16, 185, 129, 0.35);
         }
+
         .option-card[data-value="Excelente"].selected {
             background: rgba(16, 185, 129, 0.15);
             border-color: var(--accent-green);
@@ -1084,6 +1147,7 @@
         .option-card[data-value="Buena"]:hover {
             border-color: rgba(0, 242, 254, 0.35);
         }
+
         .option-card[data-value="Buena"].selected {
             background: rgba(0, 242, 254, 0.12);
             border-color: var(--accent-cyan);
@@ -1095,6 +1159,7 @@
         .option-card[data-value="Regular"]:hover {
             border-color: rgba(245, 158, 11, 0.35);
         }
+
         .option-card[data-value="Regular"].selected {
             background: rgba(245, 158, 11, 0.12);
             border-color: #f59e0b;
@@ -1106,6 +1171,7 @@
         .option-card[data-value="Mala"]:hover {
             border-color: rgba(239, 68, 68, 0.35);
         }
+
         .option-card[data-value="Mala"].selected {
             background: rgba(239, 68, 68, 0.12);
             border-color: #ef4444;
@@ -1138,19 +1204,24 @@
                 justify-content: center;
                 gap: 8px;
             }
+
             .nps-btn {
-                flex: 0 0 calc(18% - 8px); /* 5 elements per row roughly */
+                flex: 0 0 calc(18% - 8px);
+                /* 5 elements per row roughly */
                 aspect-ratio: 1;
                 min-width: 38px;
             }
+
             .chip-container {
                 flex-direction: column;
                 gap: 10px;
             }
+
             .option-cards-container {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 10px;
             }
+
             .survey-card {
                 padding: 25px;
             }
@@ -1206,7 +1277,13 @@
                     <h2>ENCUESTA DE SATISFACCIÓN</h2>
                 </div>
                 <button class="config-btn" id="open-config-btn" title="Configurar Google Sheets">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path
+                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z">
+                        </path>
+                    </svg>
                     <span>Configurar Destino</span>
                 </button>
             </div>
@@ -1218,9 +1295,15 @@
                     <label class="form-label">📍 Selecciona la sucursal del local donde realizaste tu compra</label>
                     <div class="autocomplete-wrapper">
                         <div class="input-search-container">
-                            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                            <input type="text" id="sucursal-search" class="input-text-style" placeholder="Escribe el nombre o la dirección de la sucursal..." autocomplete="off">
-                            <button type="button" class="clear-search-btn" id="clear-sucursal-btn" style="display: none;">&times;</button>
+                            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input type="text" id="sucursal-search" class="input-text-style"
+                                placeholder="Escribe el nombre o la dirección de la sucursal..." autocomplete="off">
+                            <button type="button" class="clear-search-btn" id="clear-sucursal-btn"
+                                style="display: none;">&times;</button>
                         </div>
                         <input type="hidden" id="selected-sucursal-id">
                         <div class="autocomplete-suggestions" id="sucursal-suggestions" style="display: none;"></div>
@@ -1327,7 +1410,9 @@
                 <div class="form-group">
                     <label class="form-label">6. ¿Qué podríamos mejorar?</label>
                     <div class="textarea-wrapper">
-                        <textarea id="improvements-textarea" class="textarea-input" placeholder="Tu opinión es muy valiosa para nosotros. Escribe aquí tus sugerencias..." maxlength="500" rows="4"></textarea>
+                        <textarea id="improvements-textarea" class="textarea-input"
+                            placeholder="Tu opinión es muy valiosa para nosotros. Escribe aquí tus sugerencias..."
+                            maxlength="500" rows="4"></textarea>
                         <div class="char-counter"><span id="char-count">0</span> / 500</div>
                     </div>
                 </div>
@@ -1335,7 +1420,18 @@
                 <div class="form-actions">
                     <button type="submit" class="btn-submit" id="submit-btn">
                         <span>Enviar Encuesta</span>
-                        <svg class="submit-spinner" id="submit-spinner" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
+                        <svg class="submit-spinner" id="submit-spinner" width="20" height="20" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round" style="display:none;">
+                            <line x1="12" y1="2" x2="12" y2="6"></line>
+                            <line x1="12" y1="18" x2="12" y2="22"></line>
+                            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                            <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                            <line x1="2" y1="12" x2="6" y2="12"></line>
+                            <line x1="18" y1="12" x2="22" y2="12"></line>
+                            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                            <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                        </svg>
                     </button>
                 </div>
             </form>
@@ -1344,8 +1440,8 @@
             <div id="success-screen" class="success-screen" style="display: none;">
                 <div class="success-icon-wrapper">
                     <svg class="success-checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                        <circle class="success-checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
-                        <path class="success-checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        <circle class="success-checkmark-circle" cx="26" cy="26" r="25" fill="none" />
+                        <path class="success-checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
                     </svg>
                 </div>
                 <h3>¡Muchas gracias por tu tiempo!</h3>
@@ -1378,8 +1474,9 @@
                 <button class="close-modal-btn" id="close-config-btn">&times;</button>
             </div>
             <div class="modal-body">
-                <p class="modal-intro">Sigue estos pasos para vincular los resultados de la encuesta a tu hoja de cálculo:</p>
-                
+                <p class="modal-intro">Sigue estos pasos para vincular los resultados de la encuesta a tu hoja de
+                    cálculo:</p>
+
                 <ol class="steps-list">
                     <li>Crea una nueva hoja de cálculo en <strong>Google Sheets</strong>.</li>
                     <li>Ve a <strong>Extensiones &gt; Apps Script</strong> en el menú superior.</li>
@@ -1437,20 +1534,24 @@ function doOptions(e) {
                     </li>
                     <li>Haz clic en el botón de <strong>Guardar</strong> (icono de disco).</li>
                     <li>Haz clic en <strong>Implementar &gt; Nueva implementación</strong>.</li>
-                    <li>Selecciona el tipo de implementación haciendo clic en el engranaje y eligiendo <strong>Aplicación web</strong>.</li>
+                    <li>Selecciona el tipo de implementación haciendo clic en el engranaje y eligiendo
+                        <strong>Aplicación web</strong>.</li>
                     <li>Configura los campos:
                         <ul>
                             <li><strong>Descripción:</strong> Webhook Encuesta SAIG24</li>
                             <li><strong>Ejecutar como:</strong> Yo (tu cuenta)</li>
-                            <li><strong>Quién tiene acceso:</strong> Cualquier persona (esto permite que la web envíe datos)</li>
+                            <li><strong>Quién tiene acceso:</strong> Cualquier persona (esto permite que la web envíe
+                                datos)</li>
                         </ul>
                     </li>
                     <li>Haz clic en <strong>Implementar</strong>. Autoriza los accesos si Google lo solicita.</li>
                     <li>Copia la <strong>URL de la aplicación web</strong> generada.</li>
                     <li>Pégala aquí abajo y presiona Guardar:
                         <div class="input-url-container">
-                            <input type="url" id="sheet-webhook-url" class="input-url" placeholder="https://script.google.com/macros/s/.../exec">
-                            <button class="btn-primary" id="btn-save-url" style="padding: 10px 20px;" type="button">Guardar URL</button>
+                            <input type="url" id="sheet-webhook-url" class="input-url"
+                                placeholder="https://script.google.com/macros/s/.../exec">
+                            <button class="btn-primary" id="btn-save-url" style="padding: 10px 20px;"
+                                type="button">Guardar URL</button>
                         </div>
                     </li>
                 </ol>
@@ -1460,7 +1561,7 @@ function doOptions(e) {
 
     <script>
         /* ===== CONFIGURACIÓN Y ESTADOS DE LA ENCUESTA ===== */
-        const DEFAULT_GOOGLE_SCRIPT_URL = '';
+        const DEFAULT_GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzrfLu3G8hAoTYnhpNmaZmRjRiSTIf9qLZjGpYJOt5E_QbAEO8pwEeg8MkTdXB-HSnb/exec';
         let googleScriptUrl = localStorage.getItem('saig24_survey_webhook') || DEFAULT_GOOGLE_SCRIPT_URL;
 
         // Variables de estado del formulario (Cuestionario v2)
@@ -1564,7 +1665,7 @@ function doOptions(e) {
 
         sucursalSearch.addEventListener('input', (e) => {
             const filterVal = e.target.value.toLowerCase().trim();
-            
+
             if (filterVal.length < 2) {
                 sucursalSuggestions.style.display = 'none';
                 clearSucursalBtn.style.display = 'none';
@@ -1572,14 +1673,14 @@ function doOptions(e) {
             }
 
             clearSucursalBtn.style.display = 'block';
-            
+
             if (typeof sucursalesData === 'undefined') {
                 console.error('La variable sucursalesData no está definida.');
                 return;
             }
 
-            const matches = sucursalesData.filter(s => 
-                s.name.toLowerCase().includes(filterVal) || 
+            const matches = sucursalesData.filter(s =>
+                s.name.toLowerCase().includes(filterVal) ||
                 s.address.toLowerCase().includes(filterVal)
             ).slice(0, 5);
 
@@ -1797,15 +1898,15 @@ function doOptions(e) {
                     },
                     body: JSON.stringify(data)
                 })
-                .then(() => {
-                    showSuccessState();
-                })
-                .catch(error => {
-                    console.error('Error al enviar la encuesta:', error);
-                    showToast('Hubo un error al enviar los datos. Revisa la consola o tu configuración.');
-                    submitBtn.disabled = false;
-                    submitSpinner.style.display = 'none';
-                });
+                    .then(() => {
+                        showSuccessState();
+                    })
+                    .catch(error => {
+                        console.error('Error al enviar la encuesta:', error);
+                        showToast('Hubo un error al enviar los datos. Revisa la consola o tu configuración.');
+                        submitBtn.disabled = false;
+                        submitSpinner.style.display = 'none';
+                    });
             }
         });
 
@@ -1839,7 +1940,7 @@ function doOptions(e) {
 
             successScreen.style.display = 'none';
             form.style.display = 'flex';
-            
+
             submitBtn.disabled = false;
             submitSpinner.style.display = 'none';
         }
@@ -1847,7 +1948,7 @@ function doOptions(e) {
         function triggerSuccessConfetti() {
             const duration = 2000;
             const end = Date.now() + duration;
-            
+
             const successParticles = [];
             for (let i = 0; i < 50; i++) {
                 successParticles.push({
@@ -1874,7 +1975,7 @@ function doOptions(e) {
                         p.y += p.vy;
                         p.vy += 0.3;
                         p.alpha -= p.decay;
-                        
+
                         ctx.save();
                         ctx.globalAlpha = p.alpha;
                         ctx.fillStyle = p.color;
@@ -1889,7 +1990,7 @@ function doOptions(e) {
                     requestAnimationFrame(drawConfetti);
                 }
             }
-            
+
             drawConfetti();
         }
 
