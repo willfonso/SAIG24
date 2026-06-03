@@ -871,11 +871,11 @@ const sucursalesData = [
         }
     },
     {
-        "id": "neuquen-508",
-        "name": "Neuquen 508",
-        "address": "Neuquén 508",
+        "id": "luismariadrago-302",
+        "name": "Luis Maria Drago 302",
+        "address": "Luis Maria Drago 302",
         "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
-        "mapLink": "https://maps.app.goo.gl/5ZJiz35iXBp6xJvH9",
+        "mapLink": "https://maps.app.goo.gl/R6wL4Xrkph8spKa49",
         "schedule": {
             "wk": "07:00-01:00",
             "fri": "07:00-04:00",
