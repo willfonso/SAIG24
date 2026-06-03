@@ -85,7 +85,17 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        .survey-card, .header, .footer, .btn-primary, .chip-btn, .option-card, .textarea-input, .input-text-style, .btn-secondary, .modal-card, .theme-toggle-btn {
+        .survey-card,
+        .header,
+        .footer,
+        .btn-primary,
+        .chip-btn,
+        .option-card,
+        .textarea-input,
+        .input-text-style,
+        .btn-secondary,
+        .modal-card,
+        .theme-toggle-btn {
             transition: background 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
         }
 
@@ -1381,6 +1391,7 @@
         :root[data-theme="light"] #matrix {
             opacity: 0.03;
         }
+
         :root[data-theme="light"] .ambient-orb {
             opacity: 0.04;
         }
@@ -1389,12 +1400,15 @@
         :root[data-theme="light"] .icon-moon {
             display: block;
         }
+
         :root[data-theme="light"] .icon-sun {
             display: none;
         }
+
         :root[data-theme="dark"] .icon-sun {
             display: block;
         }
+
         :root[data-theme="dark"] .icon-moon {
             display: none;
         }
@@ -1416,14 +1430,16 @@
         </a>
         <div class="header-promo">
             <span class="promo-badge">INFO</span>
-            <span class="promo-text">Nuestra web también es <strong>cadena24.net</strong> (próximamente info y carrito con descuentos)</span>
+            <span class="promo-text">Nuestra web también es <strong>cadena24.net</strong> (próximamente info y carrito
+                con descuentos)</span>
             <a href="https://cadena24.net" target="_blank" class="btn-promo">
                 <span>Visitar Sitio</span>
                 <i class="icon-arrow">→</i>
             </a>
         </div>
         <div class="header-action" style="display: flex; align-items: center; gap: 15px;">
-            <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" title="Cambiar Tema" aria-label="Cambiar Tema">
+            <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" title="Cambiar Tema"
+                aria-label="Cambiar Tema">
                 <span class="icon-sun">☀️</span>
                 <span class="icon-moon">🌙</span>
             </button>
@@ -1488,7 +1504,9 @@
 
                 <!-- Question 2: Experiencia de Compra -->
                 <div class="form-group">
-                    <label class="form-label">2. ¿Cómo calificás tu experiencia de compra? <small style="font-weight: normal; color: var(--text-secondary);">(Escala de 1 a 5 estrellas)</small></label>
+                    <label class="form-label">2. ¿Cómo calificás tu experiencia de compra? <small
+                            style="font-weight: normal; color: var(--text-secondary);">(Escala de 1 a 5
+                            estrellas)</small></label>
                     <div class="rating-container" id="rating-experiencia">
                         <button type="button" class="rating-star" data-value="1" aria-label="1 estrella">★</button>
                         <button type="button" class="rating-star" data-value="2" aria-label="2 estrellas">★</button>
@@ -1519,8 +1537,8 @@
                     <label class="form-label sub-label">¿Qué producto o productos no encontraste?</label>
                     <div class="textarea-wrapper">
                         <textarea id="no-encontrado-textarea" class="textarea-input"
-                            placeholder="Escribe aquí los productos que no encontraste..."
-                            maxlength="300" rows="3"></textarea>
+                            placeholder="Escribe aquí los productos que no encontraste..." maxlength="300"
+                            rows="3"></textarea>
                         <div class="char-counter"><span id="char-count-no-encontrado">0</span> / 300</div>
                     </div>
                 </div>
@@ -1692,7 +1710,8 @@ function doOptions(e) {
                     <li>Haz clic en el botón de <strong>Guardar</strong> (icono de disco).</li>
                     <li>Haz clic en <strong>Implementar &gt; Nueva implementación</strong>.</li>
                     <li>Selecciona el tipo de implementación haciendo clic en el engranaje y eligiendo
-                        <strong>Aplicación web</strong>.</li>
+                        <strong>Aplicación web</strong>.
+                    </li>
                     <li>Configura los campos:
                         <ul>
                             <li><strong>Descripción:</strong> Webhook Encuesta SAIG24</li>
@@ -1718,7 +1737,7 @@ function doOptions(e) {
 
     <script>
         /* ===== CONFIGURACIÓN Y ESTADOS DE LA ENCUESTA ===== */
-        const DEFAULT_GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzrfLu3G8hAoTYnhpNmaZmRjRiSTIf9qLZjGpYJOt5E_QbAEO8pwEeg8MkTdXB-HSnb/exec';
+        const DEFAULT_GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzEzdeEJ8TRAVz6MqUO56WhUyEvx1jpF4IX5lAjHUcbtDfcFYlX_qbO8s8gZgdglaMl/exec';
         let googleScriptUrl = localStorage.getItem('saig24_survey_webhook') || DEFAULT_GOOGLE_SCRIPT_URL;
 
         // Variables de estado del formulario (Cuestionario v2)
@@ -1735,7 +1754,7 @@ function doOptions(e) {
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('saig24_survey_theme', newTheme);
-            
+
             // Limpiar estelas del canvas para evitar rastros incongruentes
             if (newTheme === 'light') {
                 ctx.fillStyle = "#f8f9fa";
@@ -2114,7 +2133,7 @@ function doOptions(e) {
             noEncontradoContainer.style.display = 'none';
             noEncontradoTextarea.value = '';
             charCountNoEncontrado.innerText = '0';
-            
+
             atencionCards.forEach(c => c.classList.remove('selected'));
             ticketChips.forEach(b => b.classList.remove('selected'));
 
