@@ -1738,7 +1738,14 @@ function doOptions(e) {
     <script>
         /* ===== CONFIGURACIÓN Y ESTADOS DE LA ENCUESTA ===== */
         const DEFAULT_GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzEzdeEJ8TRAVz6MqUO56WhUyEvx1jpF4IX5lAjHUcbtDfcFYlX_qbO8s8gZgdglaMl/exec';
-        let googleScriptUrl = localStorage.getItem('saig24_survey_webhook') || DEFAULT_GOOGLE_SCRIPT_URL;
+        const OLD_DEFAULT_URL = 'https://script.google.com/macros/s/AKfycbzrfLu3G8hAoTYnhpNmaZmRjRiSTIf9qLZjGpYJOt5E_QbAEO8pwEeg8MkTdXB-HSnb/exec';
+
+        let storedWebhook = localStorage.getItem('saig24_survey_webhook');
+        if (storedWebhook === OLD_DEFAULT_URL) {
+            localStorage.removeItem('saig24_survey_webhook');
+            storedWebhook = null;
+        }
+        let googleScriptUrl = storedWebhook || DEFAULT_GOOGLE_SCRIPT_URL;
 
         // Variables de estado del formulario (Cuestionario v2)
         let selectedSucursal = null;
@@ -2080,6 +2087,9 @@ function doOptions(e) {
                 recibioTicket: selectedTicket,
                 mejoras: textarea.value.trim()
             };
+
+            console.log("Enviando encuesta a URL:", googleScriptUrl);
+            console.log("Payload enviado:", data);
 
             submitBtn.disabled = true;
             submitSpinner.style.display = 'inline-block';
