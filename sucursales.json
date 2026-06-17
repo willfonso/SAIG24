@@ -1103,8 +1103,8 @@ const sucursalesData = [
             "sat": "07:00-04:00",
             "sun": "07:00-04:00"
         }
-    }
-	    {
+    },
+    {
         "id": "avellaneda-2101",
         "name": "Avellaneda 2101",
         "address": "Avellaneda 2101",
@@ -1116,8 +1116,8 @@ const sucursalesData = [
             "sat": "10:00-23:00",
             "sun": "10:00-23:00"
         }
-    }
-	    {
+    },
+    {
         "id": "joaquinvgonzalez-1607",
         "name": "Joaquin V González 1607",
         "address": "Joaquín V Gonzalez 1607",
@@ -1129,8 +1129,8 @@ const sucursalesData = [
             "sat": "10:00-23:00",
             "sun": "10:00-23:00"
         }
-    }
-	    {
+    },
+    {
         "id": "segurola-886",
         "name": "Segurola 886",
         "address": "Segurola 886",
@@ -1142,8 +1142,8 @@ const sucursalesData = [
             "sat": "10:00-23:00",
             "sun": "10:00-23:00"
         }
-    }
-	    {
+    },
+    {
         "id": "jonte-3201",
         "name": "Jonte 3201",
         "address": "Av. Alvarez Jonte 3201",
@@ -1155,8 +1155,8 @@ const sucursalesData = [
             "sat": "10:00-23:00",
             "sun": "10:00-23:00"
         }
-    }
-	    {
+    },
+    {
         "id": "nazca-797",
         "name": "Nazca 797",
         "address": "Av. Nazca 797",
