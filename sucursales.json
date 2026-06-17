@@ -1104,4 +1104,69 @@ const sucursalesData = [
             "sun": "07:00-04:00"
         }
     }
+	    {
+        "id": "avellaneda-2101",
+        "name": "Avellaneda 2101",
+        "address": "Avellaneda 2101",
+        "hoursText": "D a J: 10 a 22h | V y S: 10 a 23h",
+        "mapLink": "https://maps.app.goo.gl/Lg6AxwzH1271bwhU6",
+        "schedule": {
+            "wk": "10:00-22:00",
+            "fri": "10:00-23:00",
+            "sat": "10:00-23:00",
+            "sun": "10:00-23:00"
+        }
+    }
+	    {
+        "id": "joaquinvgonzalez-1607",
+        "name": "Joaquin V González 1607",
+        "address": "Joaquín V Gonzalez 1607",
+        "hoursText": "D a J: 10 a 22h | V y S: 10 a 23h",
+        "mapLink": "https://maps.app.goo.gl/qjiExfKVhvmruSE58",
+        "schedule": {
+            "wk": "10:00-22:00",
+            "fri": "10:00-23:00",
+            "sat": "10:00-23:00",
+            "sun": "10:00-23:00"
+        }
+    }
+	    {
+        "id": "segurola-886",
+        "name": "Segurola 886",
+        "address": "Segurola 886",
+        "hoursText": "D a J: 10 a 22h | V y S: 10 a 23h",
+        "mapLink": "https://maps.app.goo.gl/i92ihgQxZgfmD8NHA",
+        "schedule": {
+            "wk": "10:00-22:00",
+            "fri": "10:00-23:00",
+            "sat": "10:00-23:00",
+            "sun": "10:00-23:00"
+        }
+    }
+	    {
+        "id": "jonte-3201",
+        "name": "Jonte 3201",
+        "address": "Av. Alvarez Jonte 3201",
+        "hoursText": "D a J: 10 a 22h | V y S: 10 a 23h",
+        "mapLink": "https://maps.app.goo.gl/saqVEJUjQ7paBze77",
+        "schedule": {
+            "wk": "10:00-22:00",
+            "fri": "10:00-23:00",
+            "sat": "10:00-23:00",
+            "sun": "10:00-23:00"
+        }
+    }
+	    {
+        "id": "nazca-797",
+        "name": "Nazca 797",
+        "address": "Av. Nazca 797",
+        "hoursText": "D a J: 10 a 22h | V y S: 10 a 23h",
+        "mapLink": "https://maps.app.goo.gl/XMesbu171mjv1KiT8",
+        "schedule": {
+            "wk": "10:00-22:00",
+            "fri": "10:00-23:00",
+            "sat": "10:00-23:00",
+            "sun": "10:00-23:00"
+        }
+    }
 ]
