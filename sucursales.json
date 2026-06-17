@@ -1145,7 +1145,7 @@ const sucursalesData = [
     },
     {
         "id": "jonte-3201",
-        "name": "Jonte 3201",
+        "name": "Alvarez Jonte 3201",
         "address": "Av. Alvarez Jonte 3201",
         "hoursText": "D a J: 10 a 22h | V y S: 10 a 23h",
         "mapLink": "https://maps.app.goo.gl/saqVEJUjQ7paBze77",
