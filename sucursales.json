@@ -1145,7 +1145,7 @@ const sucursalesData = [
     },
     {
         "id": "jonte-3201",
-        "name": "Alvarez Jonte 3201",
+        "name": "Jonte 3201",
         "address": "Av. Alvarez Jonte 3201",
         "hoursText": "D a J: 10 a 22h | V y S: 10 a 23h",
         "mapLink": "https://maps.app.goo.gl/saqVEJUjQ7paBze77",
@@ -1167,6 +1167,71 @@ const sucursalesData = [
             "fri": "10:00-23:00",
             "sat": "10:00-23:00",
             "sun": "10:00-23:00"
+        }
+    },
+    {
+        "id": "rivadavia-5695",
+        "name": "Rivadavia 5695",
+        "address": "Av. Rivadavia 5695",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/pQvnUnf859tpgbbL6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "rivadavia-5744",
+        "name": "Rivadavia 5744",
+        "address": "Av. Rivadavia 5744",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/vwwHV7nuXPm39NLZ9",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "pachecodemelo-2601",
+        "name": "José Andrés Pacheco De Melo 2601",
+        "address": "Av. José Andrés Pacheco De Melo 2601",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/eX4Y2qiDGXRJ7t2E6",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "medrano-802",
+        "name": "Medrano 802",
+        "address": "Avenida Medrano 802",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/Huu4VWzJdDXk3d867",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
+        "id": "humahuaca-3700",
+        "name": "Humahuaca 3700",
+        "address": "Av. Humahuaca 3700",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/znMcrbgum9VtNYFz7",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
         }
     }
 ]
