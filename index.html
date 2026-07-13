@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAIG24</title>
+    <title>Market24 - SAIG24</title>
 
     <!-- Google Fonts: Orbitron for tech titles and Inter for clean business data -->
     <link
@@ -1592,6 +1592,37 @@
                     </div>
                 </div>
 
+                <!-- Sección Condicional de Escalación para Calificaciones Regulares y Malas -->
+                <div class="form-group sub-question" id="escalation-container" style="display: none; border-left-color: var(--accent-blue);">
+                     <label class="form-label" style="color: var(--accent-blue); font-weight: 700; margin-bottom: 5px;">📍 Seguimiento de tu caso</label>
+                     <div style="font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary); margin-bottom: 10px;">
+                         En <strong>Market 24</strong> nos tomamos muy en serio tu calificación. Queremos hacer un seguimiento personalizado de tu caso para resolver cualquier inconveniente.
+                     </div>
+                     <label class="form-label sub-label" style="font-weight: 600; display: block; margin-bottom: 8px;">¿Deseas que nos pongamos en contacto contigo?</label>
+                     <div class="chip-container" id="escalation-chips" style="margin-bottom: 10px;">
+                         <button type="button" class="chip-btn" data-value="Sí">
+                             <span class="chip-icon">✓</span>
+                             <span>Sí, deseo ser contactado</span>
+                         </button>
+                         <button type="button" class="chip-btn" data-value="No">
+                             <span class="chip-icon">✗</span>
+                             <span>No deseo escalar el caso</span>
+                         </button>
+                     </div>
+
+                     <!-- Campos de datos de contacto (condicional) -->
+                     <div class="form-group" id="escalation-fields-container" style="display: none; gap: 15px; margin-top: 5px; animation: fadeInUp 0.3s ease both;">
+                         <div class="form-group" style="gap: 6px;">
+                             <label class="form-label sub-label" style="font-weight: 600;">Nombre completo:</label>
+                             <input type="text" id="escalation-name" class="input-text-style" placeholder="Escribe tu nombre y apellido..." maxlength="80">
+                         </div>
+                         <div class="form-group" style="gap: 6px;">
+                             <label class="form-label sub-label" style="font-weight: 600;">Número de teléfono / WhatsApp:</label>
+                             <input type="tel" id="escalation-phone" class="input-text-style" placeholder="Ej: +54 11 1234567..." maxlength="20">
+                         </div>
+                     </div>
+                 </div>
+
                 <div class="form-actions">
                     <button type="submit" class="btn-submit" id="submit-btn">
                         <span>Enviar Encuesta</span>
@@ -1671,7 +1702,10 @@
       "Productos No Encontrados",
       "Calificación Atención", 
       "Recibió Ticket/Comprobante", 
-      "Mejoras Sugeridas"
+      "Mejoras Sugeridas",
+      "Desea Escalar Caso",
+      "Nombre Contacto",
+      "Teléfono Contacto"
     ]);
   }
   
@@ -1686,24 +1720,110 @@
       data.productosNoEncontrados,
       data.atencion,
       data.recibioTicket,
-      data.mejoras
+      data.mejoras,
+      data.deseaEscalar || "No aplica",
+      data.escalarNombre || "",
+      data.escalarTelefono || ""
     ]);
     
+    // Enviar correo de notificación
+    var emailRecipient = "genesis.zarraga93@gmail.com, willfonso@gmail.com";
+    var subject = "⚠️ Nueva Encuesta de Satisfacción - SAIG24 (" + data.sucursalNombre + ")";
+    
+    var estrellas = "";
+    for (var i = 0; i &lt; 5; i++) {
+      estrellas += i &lt; data.experiencia ? "★" : "☆";
+    }
+    
+    var esEscalado = data.deseaEscalar === "Sí";
+    var colorAlerta = esEscalado ? "#ef4444" : "#e2e8f0";
+    var bgAlerta = esEscalado ? "#fef2f2" : "#f8fafc";
+    var textoAlerta = esEscalado ? "#991b1b" : "#475569";
+    
+    var htmlBody = 
+      '&lt;div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px; background-color: #ffffff;"&gt;' +
+        '&lt;div style="background-color: #0c0706; padding: 15px; border-radius: 6px; text-align: center; margin-bottom: 20px;"&gt;' +
+          '&lt;h2 style="color: #ee965b; margin: 0; font-family: Arial, sans-serif; font-size: 20px; letter-spacing: 1px;"&gt;SAIG24 · MARKET24&lt;/h2&gt;' +
+          '&lt;p style="color: #ffffff; margin: 5px 0 0 0; font-size: 14px;"&gt;Nueva Encuesta Registrada&lt;/p&gt;' +
+        '&lt;/div&gt;' +
+        
+        '&lt;h3 style="color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-top: 0;"&gt;Detalles del Registro&lt;/h3&gt;' +
+        '&lt;table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;"&gt;' +
+          '&lt;tr style="background-color: #f8fafc;"&gt;' +
+            '&lt;td style="padding: 10px; font-weight: bold; width: 40%; color: #475569;"&gt;Fecha:&lt;/td&gt;' +
+            '&lt;td style="padding: 10px; color: #1e293b;"&gt;' + new Date().toLocaleString() + '&lt;/td&gt;' +
+          '&lt;/tr&gt;' +
+          '&lt;tr&gt;' +
+            '&lt;td style="padding: 10px; font-weight: bold; color: #475569;"&gt;Sucursal:&lt;/td&gt;' +
+            '&lt;td style="padding: 10px; color: #1e293b;"&gt;' + data.sucursalNombre + ' (ID: ' + data.sucursalId + ')&lt;/td&gt;' +
+          '&lt;/tr&gt;' +
+          '&lt;tr style="background-color: #f8fafc;"&gt;' +
+            '&lt;td style="padding: 10px; font-weight: bold; color: #475569;"&gt;Experiencia de Compra:&lt;/td&gt;' +
+            '&lt;td style="padding: 10px; color: #1e293b; font-size: 16px;"&gt;' + estrellas + ' (' + data.experiencia + '/5)&lt;/td&gt;' +
+          '&lt;/tr&gt;' +
+          '&lt;tr&gt;' +
+            '&lt;td style="padding: 10px; font-weight: bold; color: #475569;"&gt;¿Encontró todo?:&lt;/td&gt;' +
+            '&lt;td style="padding: 10px; color: #1e293b;"&gt;' +
+              '&lt;span style="color: ' + (data.encontrado === 'Sí' ? '#10b981' : '#ef4444') + '; font-weight: bold;"&gt;' + data.encontrado + '&lt;/span&gt;' +
+              (data.encontrado === 'No' ? '&lt;br&gt;&lt;span style="color: #64748b; font-size: 13px;"&gt;Productos no encontrados: ' + data.productosNoEncontrados + '&lt;/span&gt;' : '') +
+            '&lt;/td&gt;' +
+          '&lt;/tr&gt;' +
+          '&lt;tr style="background-color: #f8fafc;"&gt;' +
+            '&lt;td style="padding: 10px; font-weight: bold; color: #475569;"&gt;Atención Recibida:&lt;/td&gt;' +
+            '&lt;td style="padding: 10px; color: #1e293b; font-weight: bold;"&gt;' + data.atencion + '&lt;/td&gt;' +
+          '&lt;/tr&gt;' +
+          '&lt;tr&gt;' +
+            '&lt;td style="padding: 10px; font-weight: bold; color: #475569;"&gt;¿Recibió Ticket?:&lt;/td&gt;' +
+            '&lt;td style="padding: 10px; color: #1e293b;"&gt;' + data.recibioTicket + '&lt;/td&gt;' +
+          '&lt;/tr&gt;' +
+          '&lt;tr style="background-color: #f8fafc;"&gt;' +
+            '&lt;td style="padding: 10px; font-weight: bold; color: #475569;"&gt;Sugerencias de Mejora:&lt;/td&gt;' +
+            '&lt;td style="padding: 10px; color: #1e293b; font-style: italic;"&gt;' + (data.mejoras || 'Sin sugerencias') + '&lt;/td&gt;' +
+          '&lt;/tr&gt;' +
+        '&lt;/table&gt;' +
+        
+        '&lt;h3 style="color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-top: 25px;"&gt;Seguimiento / Escalación del Caso&lt;/h3&gt;' +
+        '&lt;div style="padding: 15px; border-radius: 6px; border: 1px solid ' + colorAlerta + '; background-color: ' + bgAlerta + ';"&gt;' +
+          '&lt;p style="margin-top: 0; font-weight: bold; color: ' + textoAlerta + ';"&gt;' +
+            '¿Desea escalar el caso?: ' + (data.deseaEscalar || 'No') +
+          '&lt;/p&gt;' +
+          (esEscalado ? (
+            '&lt;table style="width: 100%; border-collapse: collapse; margin-top: 10px;"&gt;' +
+              '&lt;tr&gt;' +
+                '&lt;td style="padding: 5px 0; font-weight: bold; width: 35%; color: #7f1d1d;"&gt;Cliente:&lt;/td&gt;' +
+                '&lt;td style="padding: 5px 0; color: #1e293b;"&gt;' + data.escalarNombre + '&lt;/td&gt;' +
+              '&lt;/tr&gt;' +
+              '&lt;tr&gt;' +
+                '&lt;td style="padding: 5px 0; font-weight: bold; color: #7f1d1d;"&gt;Teléfono / WhatsApp:&lt;/td&gt;' +
+                '&lt;td style="padding: 5px 0; color: #1e293b; font-weight: bold;"&gt;&lt;a href="https://wa.me/' + data.escalarTelefono.replace(/\D/g, "") + '" target="_blank" style="color: #10b981; text-decoration: none;"&gt;📞 ' + data.escalarTelefono + ' (Chat directo)&lt;/a&gt;&lt;/td&gt;' +
+              '&lt;/tr&gt;' +
+            '&lt;/table&gt;'
+          ) : '&lt;p style="margin: 0; color: #64748b; font-style: italic;"&gt;El cliente prefirió no dejar datos de contacto.&lt;/p&gt;') +
+        '&lt;/div&gt;' +
+        
+        '&lt;div style="margin-top: 25px; font-size: 11px; color: #94a3b8; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 15px;"&gt;' +
+          'Este correo fue generado automáticamente por el portal de encuestas Market 24.&lt;br&gt;' +
+          'Para que el remitente sea &lt;strong&gt;zonawilliam.cadenak24@gmail.com&lt;/strong&gt;, este script debe ser implementado usando dicha cuenta de Google.' +
+        '&lt;/div&gt;' +
+      '&lt;/div&gt;';
+      
+    MailApp.sendEmail({
+      to: emailRecipient,
+      subject: subject,
+      htmlBody: htmlBody
+    });
+    
     return ContentService.createTextOutput(JSON.stringify({ "status": "success" }))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeader("Access-Control-Allow-Origin", "*");
+      .setMimeType(ContentService.MimeType.JSON);
   } catch (error) {
     return ContentService.createTextOutput(JSON.stringify({ "status": "error", "message": error.toString() }))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeader("Access-Control-Allow-Origin", "*");
+      .setMimeType(ContentService.MimeType.JSON);
   }
 }
 
 function doOptions(e) {
   return ContentService.createTextOutput("")
-    .setHeader("Access-Control-Allow-Origin", "*")
-    .setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
-    .setHeader("Access-Control-Allow-Headers", "Content-Type");
+    .setMimeType(ContentService.MimeType.TEXT);
 }</code></pre>
                             <button class="btn-copy" id="btn-copy-code" type="button">Copiar Código</button>
                         </div>
@@ -1937,6 +2057,7 @@ function doOptions(e) {
         // --- Lógica del Sistema de Estrellas (Experiencia de Compra) ---
         setupStars('rating-experiencia', 'label-experiencia', (val) => {
             selectedExperienciaCompra = val;
+            checkLowRatingStatus();
         });
 
         function setupStars(containerId, labelId, callback) {
@@ -2016,6 +2137,7 @@ function doOptions(e) {
                 atencionCards.forEach(c => c.classList.remove('selected'));
                 card.classList.add('selected');
                 selectedAtencion = card.getAttribute('data-value');
+                checkLowRatingStatus();
             });
         });
 
@@ -2035,6 +2157,51 @@ function doOptions(e) {
         textarea.addEventListener('input', () => {
             charCount.innerText = textarea.value.length;
         });
+
+        // --- Lógica de Escalación (Calificaciones Regulares y Malas) ---
+        let selectedEscalacion = ''; // 'Sí' o 'No'
+
+        const escalationContainer = document.getElementById('escalation-container');
+        const escalationChips = document.querySelectorAll('#escalation-chips .chip-btn');
+        const escalationFieldsContainer = document.getElementById('escalation-fields-container');
+        const escalationNameInput = document.getElementById('escalation-name');
+        const escalationPhoneInput = document.getElementById('escalation-phone');
+
+        function checkLowRatingStatus() {
+            const isLowRating = (selectedExperienciaCompra > 0 && selectedExperienciaCompra <= 3) ||
+                                 (selectedAtencion === 'Regular' || selectedAtencion === 'Mala');
+            
+            if (isLowRating) {
+                escalationContainer.style.display = 'flex';
+            } else {
+                escalationContainer.style.display = 'none';
+                resetEscalationFields();
+            }
+        }
+
+        escalationChips.forEach(btn => {
+            btn.addEventListener('click', () => {
+                escalationChips.forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                selectedEscalacion = btn.getAttribute('data-value');
+
+                if (selectedEscalacion === 'Sí') {
+                    escalationFieldsContainer.style.display = 'flex';
+                } else {
+                    escalationFieldsContainer.style.display = 'none';
+                    escalationNameInput.value = '';
+                    escalationPhoneInput.value = '';
+                }
+            });
+        });
+
+        function resetEscalationFields() {
+            selectedEscalacion = '';
+            escalationChips.forEach(b => b.classList.remove('selected'));
+            escalationFieldsContainer.style.display = 'none';
+            escalationNameInput.value = '';
+            escalationPhoneInput.value = '';
+        }
 
         // --- Envío del Formulario ---
         const form = document.getElementById('survey-form');
@@ -2078,6 +2245,31 @@ function doOptions(e) {
                 return;
             }
 
+            const isLowRating = (selectedExperienciaCompra > 0 && selectedExperienciaCompra <= 3) ||
+                                 (selectedAtencion === 'Regular' || selectedAtencion === 'Mala');
+
+            if (isLowRating) {
+                if (selectedEscalacion === '') {
+                    showToast('Por favor, indica si deseas que nos pongamos en contacto contigo por tu calificación.');
+                    document.getElementById('escalation-chips').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
+                if (selectedEscalacion === 'Sí') {
+                    if (escalationNameInput.value.trim() === '') {
+                        showToast('Por favor, ingresa tu nombre de contacto.');
+                        escalationNameInput.focus();
+                        escalationNameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        return;
+                    }
+                    if (escalationPhoneInput.value.trim() === '') {
+                        showToast('Por favor, ingresa tu número de teléfono de contacto.');
+                        escalationPhoneInput.focus();
+                        escalationPhoneInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        return;
+                    }
+                }
+            }
+
             const data = {
                 sucursalId: selectedSucursal.id,
                 sucursalNombre: selectedSucursal.name,
@@ -2086,7 +2278,10 @@ function doOptions(e) {
                 productosNoEncontrados: selectedEncontrado === 'No' ? noEncontradoTextarea.value.trim() : '',
                 atencion: selectedAtencion,
                 recibioTicket: selectedTicket,
-                mejoras: textarea.value.trim()
+                mejoras: textarea.value.trim(),
+                deseaEscalar: isLowRating ? selectedEscalacion : 'No aplica',
+                escalarNombre: (isLowRating && selectedEscalacion === 'Sí') ? escalationNameInput.value.trim() : '',
+                escalarTelefono: (isLowRating && selectedEscalacion === 'Sí') ? escalationPhoneInput.value.trim() : ''
             };
 
             console.log("Enviando encuesta a URL:", googleScriptUrl);
@@ -2134,6 +2329,10 @@ function doOptions(e) {
             selectedEncontrado = '';
             selectedAtencion = '';
             selectedTicket = '';
+            resetEscalationFields();
+            if (escalationContainer) {
+                escalationContainer.style.display = 'none';
+            }
 
             // Limpiar interfaz
             document.getElementById('rating-experiencia').removeAttribute('data-selected');
