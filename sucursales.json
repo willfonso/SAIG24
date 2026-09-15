@@ -520,6 +520,19 @@ const sucursalesData = [
         }
     },
     {
+        "id": "donado-2725",
+        "name": "Donado 2725",
+        "address": "Calle Donado 2725",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/fMVuSiqHfFhe622b8",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+    {
         "id": "gaona-3852",
         "name": "Gaona 3852",
         "address": "Av. Gaona 3852",
@@ -599,7 +612,7 @@ const sucursalesData = [
     },
     {
         "id": "chenaut-1812",
-        "name": "Indalecio Chenaut 1812",
+        "name": "Chenaut 1812",
         "address": "Av. Gral. Indalecio Chenaut 1802",
         "hoursText": "L a D: Abierto 24 Hs",
         "mapLink": "https://maps.app.goo.gl/FizL6cUby7Jsb92U6",
@@ -829,6 +842,19 @@ const sucursalesData = [
             "fri": "24h",
             "sat": "24h",
             "sun": null
+        }
+    },
+    {
+        "id": "nazca-699",
+        "name": "Nazca 699",
+        "address": "Avenida Nazca 699",
+        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
+        "mapLink": "https://maps.app.goo.gl/4F96tehsApPjGVvu5",
+        "schedule": {
+            "wk": "07:00-01:00",
+            "fri": "07:00-04:00",
+            "sat": "07:00-04:00",
+            "sun": "07:00-04:00"
         }
     },
     {
@@ -1227,6 +1253,19 @@ const sucursalesData = [
         "address": "Av. Humahuaca 3700",
         "hoursText": "L a D: Abierto 24 Hs",
         "mapLink": "https://maps.app.goo.gl/znMcrbgum9VtNYFz7",
+        "schedule": {
+            "wk": "24h",
+            "fri": "24h",
+            "sat": "24h",
+            "sun": null
+        }
+    },
+	{
+        "id": "donado-2725",
+        "name": "Donado 2725",
+        "address": "Donado 2725",
+        "hoursText": "L a D: Abierto 24 Hs",
+        "mapLink": "https://maps.app.goo.gl/fMVuSiqHfFhe622b8",
         "schedule": {
             "wk": "24h",
             "fri": "24h",
