@@ -221,19 +221,6 @@ const sucursalesData = [
         }
     },
     {
-        "id": "beiro-3801",
-        "name": "Beiro 3801",
-        "address": "Av. Francisco Beiro 3801",
-        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
-        "mapLink": "https://maps.app.goo.gl/G7vcBLxBcD223v4X6",
-        "schedule": {
-            "wk": "07:00-01:00",
-            "fri": "07:00-04:00",
-            "sat": "07:00-04:00",
-            "sun": "07:00-04:00"
-        }
-    },
-    {
         "id": "beiro-4902",
         "name": "Beiro 4932",
         "address": "Av. Francisco Beiró 4932",
@@ -507,19 +494,6 @@ const sucursalesData = [
         }
     },
     {
-        "id": "directorio-5497",
-        "name": "Directorio 5497",
-        "address": "Av. Directorio 5497",
-        "hoursText": "L a D: Abierto 24 Hs",
-        "mapLink": "https://maps.app.goo.gl/rCpirghxxeSQC8qY6",
-        "schedule": {
-            "wk": "24h",
-            "fri": "24h",
-            "sat": "24h",
-            "sun": null
-        }
-    },
-    {
         "id": "donado-2725",
         "name": "Donado 2725",
         "address": "Calle Donado 2725",
@@ -569,19 +543,6 @@ const sucursalesData = [
             "fri": "24h",
             "sat": "24h",
             "sun": null
-        }
-    },
-    {
-        "id": "godoycruz-2587",
-        "name": "Godoy Cruz 2587",
-        "address": "Godoy Cruz 2587",
-        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
-        "mapLink": "https://maps.app.goo.gl/uqsofUFpHaAg3Km69",
-        "schedule": {
-            "wk": "07:00-01:00",
-            "fri": "07:00-04:00",
-            "sat": "07:00-04:00",
-            "sun": "07:00-04:00"
         }
     },
     {
@@ -790,19 +751,6 @@ const sucursalesData = [
             "fri": "24h",
             "sat": "24h",
             "sun": null
-        }
-    },
-    {
-        "id": "nazca-1808",
-        "name": "Nazca 1808",
-        "address": "Av. Nazca 1808",
-        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
-        "mapLink": "https://maps.app.goo.gl/7EYfBypxUpUyr7X58",
-        "schedule": {
-            "wk": "07:00-01:00",
-            "fri": "07:00-04:00",
-            "sat": "07:00-04:00",
-            "sun": "07:00-04:00"
         }
     },
     {
@@ -1066,19 +1014,6 @@ const sucursalesData = [
         }
     },
     {
-        "id": "segurola-1090",
-        "name": "Segurola 1090",
-        "address": "Segurola 1090",
-        "hoursText": "D a J: 07 a 01h | V y S: 07 a 04h",
-        "mapLink": "https://maps.app.goo.gl/AcNtLyiWw2VmdmdS9",
-        "schedule": {
-            "wk": "07:00-01:00",
-            "fri": "07:00-04:00",
-            "sat": "07:00-04:00",
-            "sun": "07:00-04:00"
-        }
-    },
-    {
         "id": "segurola-1696",
         "name": "Segurola 1696",
         "address": "Segurola 1696",
@@ -1253,19 +1188,6 @@ const sucursalesData = [
         "address": "Av. Humahuaca 3700",
         "hoursText": "L a D: Abierto 24 Hs",
         "mapLink": "https://maps.app.goo.gl/znMcrbgum9VtNYFz7",
-        "schedule": {
-            "wk": "24h",
-            "fri": "24h",
-            "sat": "24h",
-            "sun": null
-        }
-    },
-	{
-        "id": "donado-2725",
-        "name": "Donado 2725",
-        "address": "Donado 2725",
-        "hoursText": "L a D: Abierto 24 Hs",
-        "mapLink": "https://maps.app.goo.gl/fMVuSiqHfFhe622b8",
         "schedule": {
             "wk": "24h",
             "fri": "24h",
